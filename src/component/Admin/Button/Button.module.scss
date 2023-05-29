@@ -61,3 +61,25 @@
     font-size: 1.4rem;
     color: #fff;
 }
+
+.modal-header{
+    padding: 20px ;
+}
+
+.modal-heading{
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.modal-body{
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.btn-close{
+    font-size: 1.4rem;
+    color: var(--iconColor);
+    font-weight: 600;
+}

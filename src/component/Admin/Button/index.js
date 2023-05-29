@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Button.module.scss";
+import { Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowsRotate,
@@ -11,7 +12,9 @@ import {
   faSave,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import { api } from "../../../constants";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 const cx = classNames.bind(styles);
 
 export const Edit = () => {
@@ -44,12 +47,63 @@ export const Add = (props) => {
   );
 };
 
-export const Delete = () => {
+export const Delete = (prop) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  console.log(prop.id);
+  const handleDelete = (id) => {
+    fetch(api.DeleteProduct, {
+      method: "POST",
+      headers: {
+        Host: "chippisoft.com",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: { id: id },
+    }).then((response) => console.log(response));
+    setShow(false);
+    // window.location.reload();
+  };
   return (
-    <button className={cx("btn-wrap", "action-btn", "btn-delete")}>
-      <FontAwesomeIcon icon={faTrash} className={cx("btn-icon")} />
-      <span className={cx("btn-name")}>Xoá</span>
-    </button>
+    <>
+      {" "}
+      <button
+        className={cx("btn-wrap", "action-btn", "btn-delete")}
+        onClick={() => handleShow(true)}
+      >
+        <FontAwesomeIcon icon={faTrash} className={cx("btn-icon")} />
+        <span className={cx("btn-name")}>Xoá</span>
+      </button>
+      <Modal show={show} onHide={handleClose} className={cx("modal")}>
+        <div className={cx("modal-wrapper")}>
+          <Modal.Header closeButton className={cx("modal-header")}>
+            <Modal.Title className={cx("modal-heading")}>
+              Xác nhận xoá{" "}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className={cx("modal-body")}>
+            Bạn có muốn xoá sản phẩm này không ?
+          </Modal.Body>
+          <Modal.Footer className={cx("modal-btn")}>
+            <button
+              variant="secondary"
+              onClick={handleClose}
+              className={cx("btn-wrap")}
+            >
+              <span className={cx("btn-close")}>Đóng</span>
+            </button>
+            <button
+              variant="primary"
+              onClick={() => handleDelete(prop.id)}
+              className={cx("btn-wrap", "btn-delete")}
+            >
+              <span className={cx("btn-name")}>Xoá</span>
+            </button>
+          </Modal.Footer>
+        </div>
+      </Modal>
+    </>
   );
 };
 

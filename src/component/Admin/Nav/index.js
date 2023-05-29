@@ -32,7 +32,7 @@ function Nav(props) {
     event.preventDefault();
     const elementClicked = event.target;
     const elementId = elementClicked.id;
-    console.log(elementId);
+
     if (elementId) {
       const element = document.getElementsByClassName("nav-item");
       for (let i = 0; i < element.length; i++) {
@@ -46,7 +46,7 @@ function Nav(props) {
   const handleClickSubMenu = (event) => {
     const elementClicked = event.target;
     const elementId = elementClicked.id;
-    console.log(elementId);
+
     if (elementId) {
       let menuId = `${elementId}-sub-menu`;
       document

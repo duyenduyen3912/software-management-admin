@@ -7,7 +7,7 @@ import { Col, Row, Table } from "react-bootstrap";
 import ReactPaginate from "react-paginate";
 
 import { useLocation } from "react-router-dom";
-import Sweetpagination from "sweetpagination";
+import { api } from "../../../constants";
 import { Add, Delete, Edit, View } from "../../../component/Admin/Button";
 import Header from "../../../component/Admin/Header/header";
 import Heading from "../../../component/Admin/Heading";
@@ -43,15 +43,12 @@ function Product() {
     formData.append("password", "Duyen123!");
 
     var requestOptions = {
-      method: "POST",
+      method: "GET",
       headers: myHeaders,
-      body: formData,
+      // body: formData,
       redirect: "follow",
     };
-    fetch(
-      `https://chippisoft.com/API/Getallproducts.php?page=${currentPage}`,
-      requestOptions
-    )
+    fetch(`${api.ListProduct}${currentPage}`, requestOptions)
       .then((response) => response.text())
       .then((data) => JSON.parse(data))
       .then((result) => {
@@ -89,9 +86,7 @@ function Product() {
                         <th className={cx("table-col-heading")}>
                           <div className={cx("table-col-item")}> #</div>
                         </th>
-                        <th className={cx("table-col-heading")}>
-                          <div className={cx("table-col-item")}> Tác giả</div>
-                        </th>
+
                         <th className={cx("table-col-heading")}>
                           <div className={cx("table-col-item")}>
                             {" "}
@@ -131,9 +126,7 @@ function Product() {
                                 : ++index}
                             </div>
                           </td>
-                          <td className={cx("table-col")}>
-                            <div className={cx("table-col-item")}>Admin</div>
-                          </td>
+
                           <td className={cx("table-col")}>
                             <div className={cx("table-col-item")}>
                               {item.name}
@@ -177,7 +170,7 @@ function Product() {
                               <br />
                               <Edit />
                               <br />
-                              <Delete />
+                              <Delete id={item.id} />
                               <br />
                             </div>
                           </td>

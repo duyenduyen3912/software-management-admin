@@ -47,13 +47,13 @@ function Security() {
                         danh sách phía dưới trước khi chọn ON chức năng này)
                       </div>
                     </Col>
-                    <Col xs={7}>
+                    <Col lg={7}>
                       <div className={cx("list-wrapper")}>
                         <div className={cx("list-heading")}>
                           <span className={cx("list-title")}>
                             Danh sách IP được truy cập admin
                           </span>
-                          <Add name={"Thêm IP mới"} />
+                          <Add name={"Thêm IP"} />
                         </div>
                         <Show />
                         <div className={cx("table-wrap")}>

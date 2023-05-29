@@ -1,6 +1,8 @@
 import { faBarsStaggered, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Add, Close } from "../../../component/Admin/Button";
 import Header from "../../../component/Admin/Header/header";
@@ -12,6 +14,19 @@ import styles from "../Posts/NewPost.module.scss";
 const cx = classNames.bind(styles);
 
 function New() {
+  const [avt, setAvt] = useState();
+  useEffect(() => {
+    return () => {
+      avt && URL.revokeObjectURL(avt.preview);
+    };
+  }, [avt]);
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    file.preview = URL.createObjectURL(file);
+    console.log(file.preview);
+    setAvt(file);
+    e.target.value = null;
+  };
   return (
     <div className={cx("wrapper")}>
       <Row style={{ padding: "0" }}>
@@ -44,7 +59,10 @@ function New() {
                         className={cx("post-img")}
                         id="file"
                         name="file"
+                        onChange={handleChange}
                       />
+                      <br />
+                      {avt && <img src={avt.preview} width="70%" />}
                     </div>
                   </Col>
                   <Col sm={8}>
@@ -58,10 +76,7 @@ function New() {
                           <div className={cx("post-title")}>Tên sản phẩm</div>
                           <input type="text" className={cx("post-input")} />
                         </div>
-                        <div className={cx("post-item")}>
-                          <div className={cx("post-title")}>Số thứ tự</div>
-                          <input type="text" className={cx("post-input")} />
-                        </div>
+
                         <div className={cx("post-item")}>
                           <div className={cx("post-title")}>Loại sản phẩm</div>
                           <input type="text" className={cx("post-input")} />
@@ -81,11 +96,6 @@ function New() {
                             </option>
                           </select>
                         </div>
-                        <div className={cx("post-item")}>
-                          <div className={cx("post-title")}>Tác giả</div>
-                          <input type="text" className={cx("post-input")} />
-                        </div>
-
                         <div className={cx("post-item")}>
                           <div className={cx("post-title")}>Nội dung*</div>
                           <textarea type="text" className={cx("post-input")} />
