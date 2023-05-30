@@ -103,11 +103,13 @@ function Pay() {
                     </div>
                   </div>
                 )}
-                {statusBank==="0" && (<div>Hệ thống đang bảo trì</div>)} 
+                {statusBank === "0" && <div>Hệ thống đang bảo trì</div>}
               </Col>
               <Col xl={6}>
                 <div className={cx("sub-title")}>Nạp tiền qua mã QR</div>
-                {/* <div><QRCode value={qrData} /></div> */}
+                <div>
+                  <QRCode value="https://api.vietqr.io/Mbbank/8899923062001/0/CPS%20xuanninh/vietqr_net_2.jpg?accountName=KIM%20THANH%20DUNG" />
+                </div>
               </Col>
             </Row>
           </div>
