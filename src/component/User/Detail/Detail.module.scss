@@ -1,0 +1,139 @@
+.img-detail-mobile{ 
+  display: none;
+}
+.img-detail{
+  display: block;
+}
+.block {
+  // margin: 41px 0px 0px 52px;
+  margin: 41px 0px 0px 0px;
+  background-color: #ffff;
+  border-radius: 10px;
+  padding: 37px;
+}
+.img{
+
+}
+input[type="number"] {
+  -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+}
+//bỏ dấu thêm bớt giá trị trong input
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+.img-detail {
+  width: 100%;
+  height: 484px;
+  // margin-left: 0.2rem;
+  // margin-right: 10rem;
+  object-fit: cover;
+  box-shadow: 0px 7.7982px 17.3293px rgba(46, 35, 94, 0.07);
+  border-radius: 10px;
+}
+.sub-img-detail {
+  // width: 154.27px;
+  // height: 135.77px;
+  width: 100%;
+  height: 160.3px;
+  object-fit: cover;
+  box-shadow: 0px 7.7982px 17.3293px rgba(46, 35, 94, 0.07);
+  border-radius: 10px;
+  // margin-bottom: 0.2rem;
+  // margin-top: 0.2rem;
+  
+}
+
+.infor-detail {
+margin-left: 3rem;
+}
+.nav {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+}
+.title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0.3px;
+  margin-top: 18px;
+}
+.price {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: 0.3px;
+  color: var(--success);
+  margin-top: 18px;
+}
+.introduce {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 40px;
+  margin-top: 18px;
+}
+.day {
+  display: flex;
+}
+.input-day {
+  width: 68.23px;
+}
+.button-block {
+  margin-top: 39px;
+}
+.text-buy-now {
+  // padding: 10px;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 34px;
+}
+.img-block{
+  display: inline-block;
+}
+
+.des{
+margin-top: 3rem;
+}
+.title-des{
+  display: inline-block;
+  font-weight: 700;
+font-size: 22px;
+line-height: 27px;
+letter-spacing: 0.3px;
+color: var( --textColor);
+border-bottom: 1px solid #000000;
+
+}
+.des-content{
+
+}
+
+@media (max-width: 992px) {
+  .img-detail-desktop{ 
+    display: none;
+  }
+  .img-detail-mobile{
+    display: block;
+  }
+  
+}
+@media (max-width: 442px) {
+  .img-detail-desktop{ 
+    display: none;
+  }
+  .img-detail-mobile{
+    display: block;
+  }
+  .block {
+    margin: 0;
+  }
+  .img-detail{
+    height: 284px;
+  }
+  .sub-img-detail{
+    height: 100px;
+  }
+}

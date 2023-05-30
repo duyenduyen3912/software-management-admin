@@ -1,0 +1,74 @@
+.block {
+  display: block;
+  position: relative;
+  text-align: center;
+  // margin: auto;
+  // margin-right: 53px;
+  // margin-left: 52px;
+  // margin: 41px 0px 0px 52px;
+  margin: 41px 0px 0px 0px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.contact {
+  margin-top: 40px;
+  // margin-right: 53px;
+  padding-top: 23px;
+  padding-bottom: 30px;
+}
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  margin-bottom: 1rem;
+}
+.sub-title,
+.phone-number {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+.facebook,
+.zalo {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20rem;
+  padding: 2rem 0 2rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.name {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+}
+// @media (max-width: 992px) {
+//   .block{
+//     margin: 0;
+//   }
+
+// }
+@media (max-width: 992px) {
+  .block {
+    margin: 0;
+  }
+  .title {
+    font-size: 16px;
+  }
+  .sub-title,
+  .phone-number,
+  .name {
+    font-size: 14px;
+    margin: 0 3rem;
+  }
+  .facebook,
+  .zalo {
+    margin: 0 10rem;
+    font-size: 10px;
+  }
+}
+@media (max-witdh: 1200px) {
+  .facebook,
+  .zalo {
+    margin: 0 5rem;
+  }
+}

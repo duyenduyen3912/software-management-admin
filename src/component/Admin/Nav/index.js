@@ -342,16 +342,18 @@ function Nav(props) {
           </div>
         </li>
         <li
-          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          className={`nav-item ${
+            props.path === "payment" ? cx("active") : ""
+          } `}
           id="p-wrap"
         >
           <div className={cx("item-wrap")}>
             <FontAwesomeIcon icon={faCreditCard} className={cx("nav-icon")} />
             <a
-              href="/pay"
+              href="/payment"
               className={cx("nav-item-name")}
               id="p"
-              onClick={(event) => handleClick(event, "pay")}
+              onClick={(event) => handleClick(event, "payment")}
             >
               Phương thức thanh toán
             </a>

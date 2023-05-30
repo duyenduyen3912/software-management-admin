@@ -5,17 +5,20 @@ import { BrowserRouter, useLocation } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./Global Style";
 import Title from "./title";
-
+import { Provider } from "react-redux";
+import store from "../src/store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <GlobalStyle>
-        <Title>
-          <App />
-        </Title>
-      </GlobalStyle>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalStyle>
+          <Title>
+            <App />
+          </Title>
+        </GlobalStyle>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

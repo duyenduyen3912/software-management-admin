@@ -1,0 +1,94 @@
+.button {
+    // background-color: red;
+    display: flex;
+    border-radius: 0.5rem;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: #f73164;
+    color: #FFF;
+  }
+  .header-btn-global {
+    display: flex;
+    border-radius: 0.5rem;
+    height: 37px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+  .tool-btn {
+    background-color: #7366ff;
+    margin-right: 10px;
+  }
+  .recharge-btn {
+    background-color: #f73164;
+  }
+  .refresh-btn{
+    background-color: transparent;
+  }
+  
+// -------------------client--------------
+.primary-btn{
+  background-color: #7366ff;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 10px;
+  color: #FFFF;
+}
+.buy-now-btn{
+  background-color: #7366ff;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 10px;
+  color: #FFFF;
+  padding: 30px;
+}
+.secondary-btn{
+  background-color: #f73164;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 10px;
+  color: #FFFF;
+}
+.primary-hover-btn{
+  background-color: #FFFF;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #7366ff ;
+  padding: 10px;
+  color: #7366ff;
+}
+.btn-see-detail{
+  background-color: #7366ff;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 10px;
+  color: #FFFF;
+  width: 100%;
+}
+.btn-buy-now{
+  background-color: #FFFF;
+  border-radius: 0.5rem;
+  height: 37px;
+  align-items: center;
+  justify-content: center;
+  border: solid 3px #7366ff ;
+  padding: 10px;
+  color: #7366ff;
+  width: 100%;
+}

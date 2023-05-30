@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Col, Row, Table } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Add, Delete, Edit, Export } from "../../../component/Admin/Button";
 import Header from "../../../component/Admin/Header/header";
@@ -23,6 +24,7 @@ function Posts() {
   const location = useLocation();
   const name = location.pathname;
   let router = name.substring(1);
+
   return (
     <>
       <div className={cx("wrapper")}>

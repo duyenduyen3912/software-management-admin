@@ -15,6 +15,7 @@ import Nav from "../../../component/Admin/Nav";
 import Show from "../../../component/Admin/Show";
 import Title from "../../../component/Admin/Title";
 import styles from "./Product.module.scss";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +34,10 @@ function Product() {
     console.log(++selectedPage.selected);
     setCurrentPage(selectedPage.selected);
   };
+
+  const jwt = useSelector((state) => state.jwt);
+  console.log(jwt);
+
   // fetch
   useEffect(() => {
     var myHeaders = new Headers();

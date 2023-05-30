@@ -1,9 +1,8 @@
-import Sign_up from "../../../component/Admin/Sign/Sign_up";
-import Sign_in from "../../../component/Admin/Sign/Sign_in";
-// import Sign_in from "../../../component_client/Sign/Sign_up";
-// import Sign_up from "../../../component_client/Sign/Sign_up";
+import Sign_up from "../../../component/User/Sign/Sign_up";
+import Sign_in from "../../../component/User/Sign/Sign_in";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Captcha from "../../../component/Admin/captcha/Captcha";
+import Captcha from "../../../component/User/captcha/Captcha";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 // import Button from "../../button/btn";
@@ -12,13 +11,14 @@ import styles from "../Sign/Sign.module.scss";
 import { type } from "@testing-library/user-event/dist/type";
 const cx = classNames.bind(styles);
 function Sign_client() {
+  const navigate = useNavigate();
   const [showLogIn, setShowLogIn] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
   const handleShowLogIn = (buttonId) => {
     setShowLogIn(false);
     setShowSignUp(true);
     setActiveButton(buttonId);
-    console.log(typeof validated);
+    // console.log(typeof validated);
   };
   const handleShowSignUp = (buttonId) => {
     setShowSignUp(false);
@@ -27,15 +27,12 @@ function Sign_client() {
   };
 
   const [activeButton, setActiveButton] = useState(1);
-
-  // const handleButtonClick = (buttonId) => {
-  //   setActiveButton(buttonId);
-  // };
+  localStorage.setItem("jwt", "");
   return (
     <div className={cx("sign")}>
       <div className={cx("sign-block")}>
         <Row>
-          <Col style={{ padding: "0" }}>
+          <Col lg={6} style={{ padding: "0" }}>
             <div className={cx("img")}>
               <img
                 className={cx("img-background")}
@@ -44,7 +41,7 @@ function Sign_client() {
               />
             </div>
           </Col>
-          <Col style={{ padding: "0" }}>
+          <Col lg={6} style={{ padding: "0" }}>
             <div className={cx("sign-input")} id="sign">
               <div className={cx("button-sign")}>
                 <div
@@ -66,36 +63,11 @@ function Sign_client() {
                   ĐĂNG KÝ
                 </div>
               </div>
+              <p className={cx("free-log-in")} onClick={() => navigate("/")}>
+                Tiếp tục mà không cần tài khoản
+              </p>
               {showLogIn && <Sign_in />}
               {showSignUp && <Sign_up />}
-              {/* <div className={cx("sign-in-block")}>
-                <div className={cx("input-block")}>
-                  <div className={cx("user-name")}>
-                    <p className={cx("label-user")}>tên tài khoản</p> <br />
-                    <input className={cx("input")} placeholder="tài khoản" />
-                  </div>
-                  <div className={cx("user-password")}>
-                    <p className={cx("label-user")}>mật khẩu</p> <br />
-                    <input
-                      className={cx("input")}
-                      type="password"
-                      placeholder="mật khẩu"
-                    />
-                  </div>
-                  <div className={cx("check-box ")}>
-                    <input className={cx("input-check-box")} type="checkbox" />
-                    <label className={cx("label-check-book")}>
-                      ghi nhớ mật khẩu
-                    </label>
-                  </div>
-                </div>
-                <div className={cx("btn")}>
-                  <Captcha />
-                </div>
-                <div className={cx("forgot-pass")}>
-                  <p className={cx("text-forgot-pass")}>Quên mật khẩu?</p>
-                </div>
-              </div> */}
             </div>
           </Col>
         </Row>

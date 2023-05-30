@@ -15,6 +15,8 @@ import {
 import { api } from "../../../constants";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
 const cx = classNames.bind(styles);
 
 export const Edit = () => {
@@ -51,12 +53,14 @@ export const Delete = (prop) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log(prop.id);
+  const jwt = useSelector((state) => state.jwt);
+
   const handleDelete = (id) => {
     fetch(api.DeleteProduct, {
       method: "POST",
       headers: {
         Host: "chippisoft.com",
+        Authorization: jwt,
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",

@@ -1,0 +1,126 @@
+.mobile-reponsive {
+  display: none;
+}
+p {
+  margin-bottom: 0px;
+}
+.list {
+  // margin: 41px 0px 0px 52px;
+  margin: 41px 0px 0px 0px;
+  background-color: #ffff;
+  border-radius: 10px;
+}
+.list-block {
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: auto;
+}
+.list-button {
+  display: flex;
+  margin: 0 0 0 1.8em;
+}
+.btn {
+  margin-right: 19px;
+  margin-top: 69px;
+}
+.text-btn {
+  font-size: 20px;
+}
+.img-produce {
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  margin-top: 19px;
+  // width: 282px;
+  // height: 201px;
+  width: 100%;
+  height: 12.4em;
+  object-fit: cover;
+  border-radius: 30px;
+}
+.list-produce {
+  // padding: 0px 18px 20px 30px;
+  position: relative;
+  padding: 0 1.8em 0 1.8em;
+  margin-top: 34px;
+  // padding-bottom: 3rem;
+  
+}
+.list-produce-block {
+  margin-top: 34px;
+  // width: 100%;
+  // display: inline-block;
+  // margin: 35px 25px 0px 0px;
+  // margin: 3em 1.97em 0em 0em;
+  //  width: 20%;
+  // justify-content: space-between;
+}
+.produce {
+  display: inline-block;
+  background: #ffffff;
+  width: 100%;
+  max-width: 349px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  // padding: 0px 28px 25px 28px;
+  padding: 0em 2em 1.7em 2em;
+}
+.infor {
+  margin-top: 19px;
+}
+.title {
+  font-weight: 700;
+ // font-size: 24px;
+   font-size: 1.3em;
+  line-height: 29px;
+  /* identical to box height */
+  letter-spacing: 0.5px;
+}
+.admin-block {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 1em;
+}
+.admin {
+  color: var(--secondary);
+  font-weight: 700;
+}
+.des {
+  margin-top: 12px;
+  display: block;
+  // width: 17em;
+  // font-size: 14px;
+  font-size: 1em;
+  line-height: 17px;
+  letter-spacing: 0.5px;
+}
+
+.block-btn {
+  margin: 13px 0px 0px 0px;
+  // display: flex;
+  // justify-content: space-between;
+}
+.produce-btn{
+//  display: flex;
+//  justify-content: space-between;
+}
+.text-produce-btn {
+  font-weight: 500;
+  //font-size: 12px;
+  font-size: 0.7em;
+  line-height: 14px;
+  text-align: center;
+  // // padding: 0px 25px 0px 25px;
+  // padding: 0em 2em;
+}
+@media (max-width: 992px) {
+  .list-button {
+    display: none;
+  }
+  .list{
+    margin: 0;
+  }
+}

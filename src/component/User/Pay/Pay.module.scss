@@ -1,0 +1,88 @@
+.block {
+  background-color: #fff;
+  margin: 41px 0px 0px 0px;
+  border-radius: 10px;
+}
+.title {
+    margin:0 0 3% 7%;
+    
+  padding-top: 33px;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 30px;
+
+}
+.deposit-methods {
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: auto;
+}
+.sub-title {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 12, 31, 0.0924) 0%,
+    rgba(115, 102, 255, 0.28) 47.4%
+  );
+  border-radius: 0px 0px 6px 6px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  display: inline-block;
+  padding: 1rem 3rem;
+  margin-bottom: 2rem;
+//   margin-left: 2rem;
+}
+.account-content {
+  margin:0 16%;
+}
+.bank,
+.account-holder,
+.account-number,
+.content {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 2rem;
+  // width: 80%;
+}
+.warning {
+    margin-top: 3rem;
+  margin-left: 10%;
+  padding: 3rem;
+  background: rgba(255, 170, 5, 0.15);
+  border: 1px dashed rgba(255, 170, 5, 0.9);
+  border-radius: 15px;
+  width: 80%;
+}
+.warning-title {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  /* identical to box height */
+
+  color: #ffaa05;
+}
+.warning-content {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+}
+@media (max-width: 992px) {
+  .block{
+    margin: 0;
+  }
+
+}
+@media (max-width: 576px) {
+  .block{
+    margin: 0;
+  }
+  .account-content{
+    margin: 0;
+    font-size: 10px;
+  }
+}
