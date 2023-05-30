@@ -36,11 +36,14 @@ function Account() {
         const jsonObj = JSON.parse(result);
         console.log(jsonObj.data);
         setInfor(jsonObj.data);
+        
       })
       .catch((error) => console.log("error", error));
   };
   useEffect(fetchAccount, []);
-
+const total_money = Number(infor[0].total_money) ;
+const money = Number(infor[0].money) ;
+const res = total_money-money;
   return (
     <div className={cx("wrapper")}>
       {/* <Row>
@@ -75,7 +78,7 @@ function Account() {
                   <div className={cx("spending-text")}>Đã nạp</div>
                 </div>
                 <div className={cx("spending-item")}>
-                  <div className={cx("spending-number")}>34.0k</div>
+                  <div className={cx("spending-number")}>{res}</div>
                   <div className={cx("spending-text")}>Đã mua</div>
                 </div>
                 <div className={cx("spending")}>

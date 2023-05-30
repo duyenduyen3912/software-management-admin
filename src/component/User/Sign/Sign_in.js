@@ -29,6 +29,7 @@ function Sign_in() {
     formdata.append("username", user.username);
     formdata.append("password", user.password);
     console.log(user);
+    localStorage.setItem("username", user.username);
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
