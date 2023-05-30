@@ -89,7 +89,7 @@ const Header = () => {
             className={cx("icon-nav")}
             onClick={_handleClick}
           />
-          <div className={cx('wallet')}>wallet </div>
+       
         </Col>
         <Col sm={10} xs={9} style={{ padding: "0px" }}>
           <div className={cx("header-icon")}>

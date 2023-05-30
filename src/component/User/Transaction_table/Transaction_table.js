@@ -3,9 +3,35 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
 import styles from "./TransactionTable.module.scss";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(styles);
 function Transaction() {
+  const [allinvoices, SetAllinvoices] = useState([]);
+  var myHeaders = new Headers();
+  myHeaders.append("Host", "chippisoft.com");
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+  myHeaders.append("Cookie", "PHPSESSID=49921775c6046dc6cddf769a987dd214");
+
+  var formdata = new FormData();
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    //  body: formdata,
+    redirect: "follow",
+  };
+  useEffect(() => {
+    fetch("https://chippisoft.com/API/Getallinvoices.php", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        const jsonObj = JSON.parse(result);
+        console.log(jsonObj.data);
+        SetAllinvoices(jsonObj.data)
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
   return (
     <div className={cx("block")}>
       <Row>
