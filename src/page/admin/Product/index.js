@@ -170,9 +170,9 @@ function Product() {
                             <div className={cx("table-col-item")}>
                               <View />
                               <br />
-                              <Edit />
+                              <Edit id={item.id} action={"product"} />
                               <br />
-                              <Delete id={item.id} />
+                              <Delete id={item.id} name={"product"} />
                               <br />
                             </div>
                           </td>

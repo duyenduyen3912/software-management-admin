@@ -72,9 +72,9 @@ function App() {
         <Route path={"/setting"} element={<Setting />} />
         <Route path={"/security"} element={<Security />} />
         <Route path={"/product/list"} element={<Product />} />
-        <Route path={"/product/new"} element={<New />} />
+        <Route path={"/product/:id"} element={<New />} />
         <Route path={"/product/category"} element={<Category />} />
-        <Route path={"/product/category/new"} element={<NewCategory />} />
+        <Route path={"/product/category/:id"} element={<NewCategory />} />
         <Route path={"/product/order"} element={<OrderList />} />
       </Routes>
     </div>

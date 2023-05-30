@@ -19,9 +19,20 @@ import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
-export const Edit = () => {
+export const Edit = (prop) => {
+  const navigate = useNavigate();
+  const handleEdit = (id) => {
+    if (prop.action === "product") {
+      navigate(`/product/${id}`);
+    } else if (prop.action === "categories") {
+      navigate(`/product/category/${id}`);
+    }
+  };
   return (
-    <button className={cx("btn-wrap", "action-btn", "btn-edit")}>
+    <button
+      className={cx("btn-wrap", "action-btn", "btn-edit")}
+      onClick={() => handleEdit(prop.id)}
+    >
       <FontAwesomeIcon icon={faEdit} className={cx("btn-icon")} />
       <span className={cx("btn-name")}>Edit</span>
     </button>
@@ -30,9 +41,91 @@ export const Edit = () => {
 
 export const Add = (props) => {
   const navigate = useNavigate();
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+  myHeaders.append("Host", "chippisoft.com");
+
+  var requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
   const _handleClick = (data, action) => {
     if (action === "Redirect") {
       navigate(`/${data}`);
+    } else if (action === "Update") {
+      var urlencoded = new URLSearchParams();
+      urlencoded.append("name", data.name);
+      urlencoded.append("stt", "1");
+      urlencoded.append("category_id", data.category_id);
+      urlencoded.append("status", data.status);
+      urlencoded.append("price", data.price);
+      urlencoded.append("version", data.version);
+      urlencoded.append("discount", data.discount);
+      urlencoded.append("content", data.content);
+      urlencoded.append("id", data.id);
+      urlencoded.append("hash", "null");
+      // urlencoded.append("image", data.image);
+      fetch(`${api.UpdateProduct}`, {
+        ...requestOptions,
+        body: urlencoded,
+      })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => console.log("error", error));
+    } else if (action === "Add") {
+      var urlencoded = new URLSearchParams();
+      urlencoded.append("name", data.name);
+      urlencoded.append("stt", "1");
+      urlencoded.append("category_id", data.category_id);
+      urlencoded.append("status", data.status);
+      urlencoded.append("price", data.price);
+      urlencoded.append("version", data.version);
+      urlencoded.append("discount", data.discount);
+      urlencoded.append("content", data.content);
+
+      // urlencoded.append("image", data.image);
+      fetch(`${api.AddProduct}`, {
+        ...requestOptions,
+        body: urlencoded,
+      })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => console.log("error", error));
+    } else if (action === "AddCategories") {
+      var urlencoded = new URLSearchParams();
+      urlencoded.append("name", data.name);
+      urlencoded.append("description", data.description);
+      urlencoded.append("status", data.status);
+      fetch(api.AddCategory, {
+        ...requestOptions,
+        body: urlencoded,
+      })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => console.log("error", error));
+    } else if (action === "UpdateCategories") {
+      var urlencoded = new URLSearchParams();
+      urlencoded.append("name", data.name);
+      urlencoded.append("description", data.description);
+      urlencoded.append("status", data.status);
+      fetch(api.AddCategory, {
+        ...requestOptions,
+        body: urlencoded,
+      })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => console.log("error", error));
     }
   };
   return (
@@ -57,39 +150,36 @@ export const Delete = (prop) => {
 
   const handleDelete = (id) => {
     var myHeaders = new Headers();
-    myHeaders.append(
-      "authorization",
-      JSON.stringify(localStorage.getItem("jwt"))
-    );
+    myHeaders.append("authorization", localStorage.getItem("jwt"));
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     myHeaders.append("Host", "chippisoft.com");
-    myHeaders.append("Accept", "*/*");
+
     var urlencoded = new URLSearchParams();
     urlencoded.append("id", id);
 
     var requestOptions = {
       method: "POST",
-
       headers: myHeaders,
       body: urlencoded,
       redirect: "follow",
     };
+    if (prop.name === "product") {
+      fetch(api.DeleteProduct, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    } else if (prop.name === "categories") {
+      console.log(prop.id);
+      fetch(api.DeleteCategories, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    }
 
-    fetch(api.DeleteProduct, requestOptions)
-      .then((response) => response.text)
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-    // fetch(api.DeleteProduct, {
-    //   method: "POST",
-    //   headers: {
-    //     Host: "chippisoft.com",
-    //     Authorization: localStorage.getItem("jwt"),
-    //   },
-    //   redirect: "follow",
-    //   body: { id: id },
-    // }).then((response) => console.log(response));
     setShow(false);
-    // window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   };
   return (
     <>

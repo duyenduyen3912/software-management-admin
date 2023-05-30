@@ -15,10 +15,6 @@ function Transaction() {
   var myHeaders = new Headers();
   myHeaders.append("Host", "chippisoft.com");
   myHeaders.append("Authorization", localStorage.getItem("jwt"));
-  // myHeaders.append(
-  //   "Authorization",
-  //   JSON.stringify(localStorage.getItem("jwt"))
-  // );
 
   var requestOptions = {
     method: "GET",
@@ -29,9 +25,7 @@ function Transaction() {
     fetch(api.GetTransaction, requestOptions)
       .then((response) => response.text())
       .then((result) => {
-        console.log(result);
         const jsonObj = JSON.parse(result);
-        console.log(jsonObj.id);
         setData(jsonObj.id);
       })
       .catch((error) => console.log("error", error));
