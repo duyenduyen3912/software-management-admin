@@ -1,6 +1,7 @@
 import Header from "../../../component/User/Header/header";
 import Nav from "../../../component/User/Nav/nav";
 import List from "../../../component/User/List/List";
+import Title from "../../../component/User/Title";
 import Detail from "../../../component/User/Detail/Detail";
 import Transaction from "../../../component/User/Transaction_table/Transaction_table";
 import Slider from "../../../component/User/Slider/Slider";
@@ -12,6 +13,7 @@ import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
 import styles from "../Page.module.scss";
 import { useLocation } from "react-router-dom";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 function List_page() {
@@ -31,6 +33,7 @@ function List_page() {
 
         <Col lg={12} id="content">
           <div className={cx("content")}>
+          <Title title={"Sản phẩm"} icon={faBarsStaggered} />
             <List />
             {/* <Detail_post/> */}
           </div>

@@ -1,20 +1,23 @@
 import Contact from "../../../component/User/contact/Contact";
 import Nav from "../../../component/User/Nav/nav";
 import Header from "../../../component/User/Header/header";
+import Title from "../../../component/User/Title";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Detail from "../../../component/User/Detail/Detail";
 import classNames from "classnames/bind";
 import styles from "../Page.module.scss";
 import { useLocation } from "react-router-dom";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const cx = classNames.bind(styles);
 
-function Detail_page() {
+function Detail_page(prop) {
+  // console.log(prop)
   const location = useLocation();
   const name = location.pathname;
   let router = name.substring(2);
-
+  
   return (
     <>
       <Row>
@@ -27,7 +30,8 @@ function Detail_page() {
 
         <Col lg={12} id="content">
           <div className={cx("content")}>
-            <Detail />
+          <Title title={"Thông tin chi tiết sản phẩm"} icon={faUser} />
+            <Detail/>
             {/* <Detail_post/> */}
           </div>
         </Col>

@@ -44,7 +44,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/list" element={<List_page />} />
         <Route path="/list/id" element={<Detail_page />} />
-        {/* <Route path="/detail" element={<Detail_page/>} /> */}
+        <Route path="/detail/:id" element={<Detail_page />} />
         <Route path="/listPost" element={<Post_page />} />
         <Route path="/post" element={<Post_page_detail />} />
         <Route path="/pay" element={<Pay_page />} />

@@ -55,7 +55,7 @@ function Sign_in() {
           }
           if (jsonObj.status === "failed") {
             alert("đăng nhập thất bại");
-            navigate("/");
+           // navigate("/");
           }
           //else alert("đăng nhập thất bại");
         })

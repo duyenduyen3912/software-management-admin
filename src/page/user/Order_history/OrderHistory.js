@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import classNames from "classnames/bind";
 import styles from "../Page.module.scss";
 import { useLocation } from "react-router-dom";
+import { faClockRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import Title from "../../../component/User/Title";
 
 const cx = classNames.bind(styles);
 function OderHistory_page() {
@@ -26,6 +28,7 @@ function OderHistory_page() {
 
         <Col lg={12} id="content">
           <div className={cx("content")}>
+          <Title title={"Giao dịch gần đây"} icon={faClockRotateLeft}/>
             <OrderHistory />
           </div>
         </Col>

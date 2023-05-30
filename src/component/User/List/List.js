@@ -158,7 +158,7 @@ function List() {
                               <div className={cx("produce-btn")}>
                                 <Button
                                   className={cx("btn-see-detail")}
-                                  onClick={() => navigate("/detail")}
+                                  onClick={() => navigate(`/detail/${product.id}`)}
                                 >
                                   <p className={cx("text-produce-btn")}>
                                     Xem chi tiết

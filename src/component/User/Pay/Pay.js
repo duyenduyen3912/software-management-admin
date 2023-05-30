@@ -5,8 +5,34 @@ import { faBell } from "@fortawesome/free-regular-svg-icons";
 
 import classNames from "classnames/bind";
 import styles from "./Pay.module.scss";
+import { useEffect, useState } from "react";
 const cx = classNames.bind(styles);
 function Pay() {
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+  const [pay, setPay] = useState([
+    {
+      short_name: "",
+      account_name: "",
+      account_number: "",
+      status: "",
+    },
+  ]);
+  useEffect(() => {
+    fetch("http://chippisoft.com/API/Statusbanking.php", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        const jsonObj = JSON.parse(result);
+        console.log(jsonObj.data);
+        setPay(jsonObj.data);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
+  const statusBank = pay[0].status;
+  console.log(statusBank);
   return (
     <>
       <div className={cx("block")}>
@@ -15,6 +41,8 @@ function Pay() {
           <div className={cx("deposit-methods")}>
             <Row>
               <Col xl={6}>
+                {statusBank === "HOẠT ĐỘNG" && <div>111111111</div>}
+                {/* {statusBank === "HOẠT ĐỘNG" && <div>111111111</div>} */}
                 <div className={cx("account-infor")}>
                   <div className={cx("sub-title")}>
                     Nạp tiền qua số tài khoản
@@ -22,14 +50,16 @@ function Pay() {
                   <div className={cx("account-content")}>
                     <div className={cx("bank")}>
                       <span className={cx("bank-span")}>NGÂN HÀNG</span>
-                      <span className={cx("bank-span")}>MB BANK</span>
+                      <span className={cx("bank-span")}>
+                        {pay[0].short_name}
+                      </span>
                     </div>
                     <div className={cx("account-holder")}>
                       <span className={cx("account-holder-span")}>
                         Chủ tài khoản
                       </span>
                       <span className={cx("account-holder-span")}>
-                        Nguyễn Quang Huy
+                        {pay[0].account_name}
                       </span>
                     </div>
                     <div className={cx("account-number")}>
@@ -37,14 +67,14 @@ function Pay() {
                         Số tài khoản
                       </span>
                       <span className={cx("account-number-span")}>
-                        0971012346
+                        {pay[0].account_number}
                       </span>
                     </div>
                     <div className={cx("content")}>
                       <span className={cx("content-span")}>
                         Nội dung chuyển khoản
                       </span>
-                      <span className={cx("content-span")}>NTF123AC</span>
+                      <span className={cx("content-span")}>CPS + username</span>
                     </div>
                   </div>
                 </div>
@@ -56,20 +86,34 @@ function Pay() {
           </div>
           <div className={cx("warning")}>
             <div className={cx("warning-title")}>
-            <FontAwesomeIcon icon={faBell} /> Lưu ý
+              <FontAwesomeIcon icon={faBell} /> Lưu ý
             </div>
-            <div className={cx("warning-content")} >
-                <ul>
-                    <li>Chú ý: Tài khoản bank không cố định.Vui lòng kiểm tra lại tên và số tài khoản đang hiển thị trước khi thực hiện giao dịch.Xin cảm ơn.</li>
-                    <li>Quý khách ghi đúng thông tin nạp tiền thì tài khoản sẽ được cộng tự động sau khi giao dịch thành công.</li>
-                    <li>Nếu quý khách muốn nạp bằng phương thức khác ngoài ngân hàng, Momo, thẻ cào điện thoại, hoặc cần hỗ trợ vui lòng liên hệ Phone/Zalo : 0888.1651.96</li>
-                    <li>Quý khách thực hiện chuyển tiền qua dịch vụ quốc tế tới ngân hàng Việt Nam vui lòng chờ từ 3-5 ngày (tùy vào dịch vụ / không tính Thứ 7 và Chủ Nhật)</li>
-                </ul>
+            <div className={cx("warning-content")}>
+              <ul>
+                <li>
+                  Chú ý: Tài khoản bank không cố định.Vui lòng kiểm tra lại tên
+                  và số tài khoản đang hiển thị trước khi thực hiện giao
+                  dịch.Xin cảm ơn.
+                </li>
+                <li>
+                  Quý khách ghi đúng thông tin nạp tiền thì tài khoản sẽ được
+                  cộng tự động sau khi giao dịch thành công.
+                </li>
+                <li>
+                  Nếu quý khách muốn nạp bằng phương thức khác ngoài ngân hàng,
+                  Momo, thẻ cào điện thoại, hoặc cần hỗ trợ vui lòng liên hệ
+                  Phone/Zalo : 0888.1651.96
+                </li>
+                <li>
+                  Quý khách thực hiện chuyển tiền qua dịch vụ quốc tế tới ngân
+                  hàng Việt Nam vui lòng chờ từ 3-5 ngày (tùy vào dịch vụ /
+                  không tính Thứ 7 và Chủ Nhật)
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-     
     </>
   );
 }

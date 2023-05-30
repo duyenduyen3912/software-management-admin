@@ -83,14 +83,15 @@ const Header = () => {
   return (
     <div className={cx("header")}>
       <Row className={cx("header-row")}>
-        <Col xs={2} className={cx("btn-nav")}>
+        <Col xs={1} className={cx("btn-nav")}>
           <FontAwesomeIcon
             icon={faBars}
             className={cx("icon-nav")}
             onClick={_handleClick}
           />
+          <div className={cx('wallet')}>wallet </div>
         </Col>
-        <Col sm={10} xs={10} style={{ padding: "0px" }}>
+        <Col sm={10} xs={9} style={{ padding: "0px" }}>
           <div className={cx("header-icon")}>
             <div className={cx("input-block")} id="search-block">
               <input

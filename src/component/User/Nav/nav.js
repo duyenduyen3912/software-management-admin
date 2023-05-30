@@ -133,55 +133,8 @@ function Nav(props) {
 
           </div>
         </li>
-        {/* <div
-          className={cx("nav-item-sub")}
-          id="product-btn-sub-menu"
-          style={
-            localStorage.getItem("product-btn-sub-menu")
-              ? { display: "block" }
-              : { display: "none" }
-          }
-        >
           <li
-            className={`nav-item ${props.path === "list" ? cx("active") : ""} `}
-            id="list-wrap"
-          >
-            <div
-              className={cx("sub-item")}
-              onClick={(event) => handleClick(event, "list")}
-            >
-              <a
-                href="/list"
-                className={cx("sub-item-link")}
-                id="list"
-                // onClick={(event) => handleClick(event, "product/list")}
-              >
-                Chuyên mục
-              </a>
-            </div>
-          </li>
-          <li
-            className={`nav-item ${
-              props.path === "order" ? cx("active") : ""
-            } `}
-            id="order-wrap"
-          >
-            <div
-              className={cx("sub-item")}
-              onClick={(event) => handleClick(event, "order")}
-            >
-              <a
-                href="/product/order"
-                className={cx("sub-item-link")}
-                id="order"
-              >
-                Đơn hàng
-              </a>
-            </div>
-          </li>
-        </div> */}
-          <li
-          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          className={`nav-item ${props.path === "order" ? cx("active") : ""} `}
           id="mb-wrap"
         >
           <div className={cx("item-wrap")}>
@@ -260,10 +213,10 @@ function Nav(props) {
               className={cx("nav-icon")}
             />
             <a
-              href="/pay"
+              href="https://fb.com/chippi.tool"
               className={cx("nav-item-name")}
               id="p"
-              onClick={(event) => handleClick(event, "")}
+            //  onClick={(event) => handleClick(event, "https://fb.com/chippi.tool")}
             >
               Code tool theo yêu cầu
             </a>
