@@ -56,16 +56,38 @@ export const Delete = (prop) => {
   const jwt = useSelector((state) => state.jwt);
 
   const handleDelete = (id) => {
-    fetch(api.DeleteProduct, {
+    var myHeaders = new Headers();
+    myHeaders.append(
+      "authorization",
+      JSON.stringify(localStorage.getItem("jwt"))
+    );
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append("Host", "chippisoft.com");
+    myHeaders.append("Accept", "*/*");
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("id", id);
+
+    var requestOptions = {
       method: "POST",
-      headers: {
-        Host: "chippisoft.com",
-        Authorization: jwt,
-      },
+
+      headers: myHeaders,
+      body: urlencoded,
       redirect: "follow",
-      referrerPolicy: "no-referrer",
-      body: { id: id },
-    }).then((response) => console.log(response));
+    };
+
+    fetch(api.DeleteProduct, requestOptions)
+      .then((response) => response.text)
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+    // fetch(api.DeleteProduct, {
+    //   method: "POST",
+    //   headers: {
+    //     Host: "chippisoft.com",
+    //     Authorization: localStorage.getItem("jwt"),
+    //   },
+    //   redirect: "follow",
+    //   body: { id: id },
+    // }).then((response) => console.log(response));
     setShow(false);
     // window.location.reload();
   };

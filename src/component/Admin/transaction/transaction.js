@@ -6,8 +6,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import { faUser } from "@fortawesome/free-regular-svg-icons";
 import styles from "../transaction/Transaction.module.scss";
+import { api } from "../../../constants";
+import { useState } from "react";
 const cx = classNames.bind(styles);
 function Transaction() {
+  const [data, setData] = useState([]);
+  var myHeaders = new Headers();
+  myHeaders.append("Host", "chippisoft.com");
+  myHeaders.append(
+    "Authorization",
+    JSON.stringify(localStorage.getItem("jwt"))
+  );
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch(api.GetTransaction, requestOptions)
+    .then((response) => response.text)
+    .then((result) => setData(result))
+    .catch((error) => console.log("error", error));
   return (
     <div className={cx("container-wrapper")}>
       <Heading title={"Giao dịch gần đây"} />
@@ -40,35 +60,41 @@ function Transaction() {
             </tr>
           </thead>
           <tbody>
-            <tr className={cx("table-line-item")}>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item")}> 1</div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item")}> Mark</div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item", "prev-money")}>
-                  250000000
-                </div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item", "add-money")}>
-                  250000000
-                </div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item", "total-money")}>
-                  250000000
-                </div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item")}>13:22 20/02/2023</div>
-              </td>
-              <td className={cx("table-col")}>
-                <div className={cx("table-col-item")}>Nạp tiền</div>
-              </td>
-            </tr>
+            {data.map((item, index) => {
+              return (
+                <tr className={cx("table-line-item")} key={index}>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item")}> {++index}</div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item")}> {item.user_id}</div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item", "prev-money")}>
+                      {item.before_money}
+                    </div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item", "add-money")}>
+                      {item.change_money}
+                    </div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item", "total-money")}>
+                      {item.after_money}
+                    </div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item")}>{item.time}</div>
+                  </td>
+                  <td className={cx("table-col")}>
+                    <div className={cx("table-col-item")}>
+                      {item.description}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </div>

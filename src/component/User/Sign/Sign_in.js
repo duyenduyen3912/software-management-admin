@@ -48,7 +48,7 @@ function Sign_in() {
           localStorage.setItem("jwt", jsonObj.jwt);
           console.log(localStorage.getItem("jwt"));
           if (jsonObj.status === "success") {
-            alert("đăng nhập thành công");
+            alert("Đăng nhập thành công");
             dispatch(setJWT(`${jsonObj.jwt}`));
             localStorage.setItem("isAdmin", jsonObj.isAdmin);
             navigate("/dashboard");

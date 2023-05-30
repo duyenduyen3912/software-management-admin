@@ -35,9 +35,6 @@ function Product() {
     setCurrentPage(selectedPage.selected);
   };
 
-  const jwt = useSelector((state) => state.jwt);
-  console.log(jwt);
-
   // fetch
   useEffect(() => {
     var myHeaders = new Headers();
