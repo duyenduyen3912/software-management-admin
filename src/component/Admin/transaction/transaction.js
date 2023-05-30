@@ -7,27 +7,36 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import { faUser } from "@fortawesome/free-regular-svg-icons";
 import styles from "../transaction/Transaction.module.scss";
 import { api } from "../../../constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const cx = classNames.bind(styles);
 function Transaction() {
   const [data, setData] = useState([]);
+  var isAdmin = localStorage.getItem("isAdmin");
   var myHeaders = new Headers();
   myHeaders.append("Host", "chippisoft.com");
-  myHeaders.append(
-    "Authorization",
-    JSON.stringify(localStorage.getItem("jwt"))
-  );
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+  // myHeaders.append(
+  //   "Authorization",
+  //   JSON.stringify(localStorage.getItem("jwt"))
+  // );
 
   var requestOptions = {
     method: "GET",
     headers: myHeaders,
     redirect: "follow",
   };
+  useEffect(() => {
+    fetch(api.GetTransaction, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        const jsonObj = JSON.parse(result);
+        console.log(jsonObj.id);
+        setData(jsonObj.id);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
 
-  fetch(api.GetTransaction, requestOptions)
-    .then((response) => response.text)
-    .then((result) => setData(result))
-    .catch((error) => console.log("error", error));
   return (
     <div className={cx("container-wrapper")}>
       <Heading title={"Giao dịch gần đây"} />

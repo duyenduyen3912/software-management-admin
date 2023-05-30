@@ -51,7 +51,7 @@ function Sign_in() {
             alert("Đăng nhập thành công");
             dispatch(setJWT(`${jsonObj.jwt}`));
             localStorage.setItem("isAdmin", jsonObj.isAdmin);
-            navigate("/dashboard");
+            navigate("/");
           }
           if (jsonObj.status === "failed") {
             alert("đăng nhập thất bại");
