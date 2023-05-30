@@ -42,8 +42,8 @@ function Detail_post() {
         </div>
       </div>
       <div className={cx("other-post")}>
-        <div className={cx("title-other-post")}>Một số bài viết khác</div>
-        <SimpleSlider />
+        {/* <div className={cx("title-other-post")}>Một số bài viết khác</div>
+        <SimpleSlider /> */}
       </div>
     </div>
   );

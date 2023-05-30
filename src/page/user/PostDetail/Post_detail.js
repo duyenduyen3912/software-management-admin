@@ -1,12 +1,14 @@
 import Contact from "../../../component/User/contact/Contact";
 import Nav from "../../../component/User/Nav/nav";
 import Header from "../../../component/User/Header/header";
+import Title from "../../../component/User/Title";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Detail_post from "../../../component/User/Detail_post/Detail_post";
 import classNames from "classnames/bind";
 import styles from "../Page.module.scss";
 import { useLocation } from "react-router-dom";
+import { faClipboard } from "@fortawesome/free-regular-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -27,6 +29,7 @@ function Post_page_detail() {
 
         <Col lg={12} id="content">
           <div className={cx("content")}>
+          <Title title={"Bài viết"} icon={faClipboard} />
             <Detail_post />
             {/* <Detail_post/> */}
           </div>

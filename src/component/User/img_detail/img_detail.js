@@ -61,7 +61,7 @@ export default class AsNavFor extends Component {
                 <div className={cx("img-block")}>
                   <img
                     className={cx("sub-img-detail")}
-                    src={require("../../../assets/bk_sign.jpeg")}
+                    src={require("../../../assets/3.jpg")}
                   />
                 </div>
               </Slider>

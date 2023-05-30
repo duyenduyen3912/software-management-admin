@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
   faBolt,
-  faBell,
   faChevronDown,
   faUser,
   faArrowRightFromBracket,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  faBell
+}from "@fortawesome/free-regular-svg-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -82,14 +83,15 @@ const Header = () => {
   return (
     <div className={cx("header")}>
       <Row className={cx("header-row")}>
-        <Col xs={2} className={cx("btn-nav")}>
+        <Col xs={1} className={cx("btn-nav")}>
           <FontAwesomeIcon
             icon={faBars}
             className={cx("icon-nav")}
             onClick={_handleClick}
           />
+       
         </Col>
-        <Col sm={10} xs={10} style={{ padding: "0px" }}>
+        <Col sm={10} xs={9} style={{ padding: "0px" }}>
           <div className={cx("header-icon")}>
             <div className={cx("input-block")} id="search-block">
               <input
@@ -145,7 +147,7 @@ const Header = () => {
                 src={require("../../../assets/avatar.jpg")}
               />
               <div className={cx("admin")}>
-                <p className={cx("admin-name")}>DAM Xuan Ninh</p>
+                <p className={cx("admin-name")}>{localStorage.getItem("username")}</p>
                 <div
                   className={cx("dropdown")}
                   onMouseDown={() => setShowDropdownMenu(true)}
@@ -175,8 +177,7 @@ const Header = () => {
                       <li
                         className={cx("hower-li")}
                         onClick={() => {
-                          localStorage.removeItem("jwt");
-                          localStorage.removeItem("isAdmin");
+                          localStorage.setItem("jwt", "");
                           navigate("/sign");
                         }}
                       >
@@ -187,9 +188,9 @@ const Header = () => {
                         >
                           {" "}
                           {localStorage.getItem("jwt") === "" ? (
-                            <p>Đăng nhập</p>
+                            <p>đăng nhập</p>
                           ) : (
-                            <>Đăng xuất</>
+                            <>đăng xuất</>
                           )}
                           {/* Đăng xuất */}{" "}
                         </label>

@@ -16,8 +16,9 @@ import styles from "../Posts/NewPost.module.scss";
 const cx = classNames.bind(styles);
 
 function New() {
-  const [avt, setAvt] = useState();
   const param = useParams();
+
+  const [avt, setAvt] = useState();
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -29,6 +30,9 @@ function New() {
     version: "",
     id: param.id,
   });
+
+  // if (param.id > 0) document.title = "Edit";
+  // else document.title = "Add";
   // const [product, setProduct] = useState(product);
 
   var myHeaders = new Headers();

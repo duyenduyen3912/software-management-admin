@@ -6,7 +6,7 @@
 }
 .block {
   // margin: 41px 0px 0px 52px;
-  margin: 41px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   background-color: #ffff;
   border-radius: 10px;
   padding: 37px;
@@ -69,7 +69,7 @@ margin-left: 3rem;
   color: var(--success);
   margin-top: 18px;
 }
-.introduce {
+.discount {
   font-weight: 500;
   font-size: 22px;
   line-height: 40px;
@@ -80,6 +80,7 @@ margin-left: 3rem;
 }
 .input-day {
   width: 68.23px;
+  padding-left: 3.6%;
 }
 .button-block {
   margin-top: 39px;
@@ -100,7 +101,7 @@ margin-top: 3rem;
 .title-des{
   display: inline-block;
   font-weight: 700;
-font-size: 22px;
+font-size: 2.7rem;
 line-height: 27px;
 letter-spacing: 0.3px;
 color: var( --textColor);
@@ -108,7 +109,7 @@ border-bottom: 1px solid #000000;
 
 }
 .des-content{
-
+  font-size: 2.1rem;
 }
 
 @media (max-width: 992px) {

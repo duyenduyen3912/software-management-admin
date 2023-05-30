@@ -29,6 +29,7 @@ function Sign_in() {
     formdata.append("username", user.username);
     formdata.append("password", user.password);
     console.log(user);
+    localStorage.setItem("username", user.username);
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -43,15 +44,16 @@ function Sign_in() {
         .then((result) => {
           console.log(typeof result);
           const jsonObj = JSON.parse(result);
-          console.log(jsonObj.status);
 
           localStorage.setItem("jwt", jsonObj.jwt);
-          console.log(localStorage.getItem("jwt"));
+          localStorage.setItem("isAdmin", jsonObj.isAdmin);
           if (jsonObj.status === "success") {
             alert("đăng nhập thành công");
-            dispatch(setJWT(`${jsonObj.jwt}`));
-            localStorage.setItem("isAdmin", jsonObj.isAdmin);
-            navigate("/");
+            if (jsonObj.isAdmin === "1") {
+              navigate("/dashboard");
+            } else {
+              navigate("/");
+            }
           }
           if (jsonObj.status === "failed") {
             alert("đăng nhập thất bại");

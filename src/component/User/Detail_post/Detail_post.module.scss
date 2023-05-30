@@ -1,6 +1,6 @@
 .block{
   // margin: 41px 10px 0px 52px;
-  margin: 41px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   padding-bottom: 10px;
   background-color: #FFF;
   // width: 100%;
@@ -70,4 +70,9 @@
   font-weight: 600;
 font-size: 51px;
 line-height: 110%;
+}
+@media (max-width: 992px) {
+  .block{
+    margin:  10px 10px 0px 10px;
+  }
 }

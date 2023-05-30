@@ -3,10 +3,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import styles from "./Account.module.scss";
 import { Col, Row, Table } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import Button from "../button/btn";
 // import Nav from "../../../component/User/Nav";
 
 const cx = classNames.bind(styles);
 function Account() {
+  var myHeaders = new Headers();
+  myHeaders.append("Host", "chippisoft.com");
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  const [infor, setInfor] = useState([
+    {
+      fullname: "",
+      phone: "",
+      email: "",
+      username: "",
+      money:"",
+      total_money:"",
+    },
+  ]);
+  const fetchAccount = () => {
+    fetch("https://chippisoft.com/API/User.php", requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        const jsonObj = JSON.parse(result);
+        console.log(jsonObj.data);
+        setInfor(jsonObj.data);
+        
+      })
+      .catch((error) => console.log("error", error));
+  };
+  useEffect(fetchAccount, []);
+const total_money = Number(infor[0].total_money) ;
+const money = Number(infor[0].money) ;
+const res = total_money-money;
   return (
     <div className={cx("wrapper")}>
       {/* <Row>
@@ -33,21 +70,19 @@ function Account() {
                 </div>
               </div>
 
-              <div className={cx("about-name")}>Nguyen Quang Huy</div>
-              <div className={cx("about-email")}>
-                @nguyenquanghuy7765@gmail.com
-              </div>
+              <div className={cx("about-name")}>{infor[0].fullname}</div>
+              <div className={cx("about-email")}>{infor[0].email}</div>
               <div className={cx("about-spending")}>
                 <div className={cx("spending")}>
-                  <div className={cx("spending-number")}>100k</div>
+                  <div className={cx("spending-number")}>{infor[0].total_money}</div>
                   <div className={cx("spending-text")}>Đã nạp</div>
                 </div>
                 <div className={cx("spending-item")}>
-                  <div className={cx("spending-number")}>34.0k</div>
+                  <div className={cx("spending-number")}>{res}</div>
                   <div className={cx("spending-text")}>Đã mua</div>
                 </div>
                 <div className={cx("spending")}>
-                  <div className={cx("spending-number")}>66.0k</div>
+                  <div className={cx("spending-number")}>{infor[0].money}</div>
                   <div className={cx("spending-text")}>Số dư</div>
                 </div>
               </div>
@@ -57,29 +92,45 @@ function Account() {
             <div className={cx("account-infor")}>
               <div className={cx("noti-heading")}>Thông tin cá nhân</div>
               <div className={cx("noti-item")}>
+                <div className={cx("noti-name")}>Username</div>
+                <input
+                  type="text"
+                  className={cx("noti-input")}
+                  defaultValue={infor[0].username}
+                />
+              </div>
+              <div className={cx("noti-item")}>
                 <div className={cx("noti-name")}>Họ và tên</div>
-                <input type="text" className={cx("noti-input")} />
+                <input
+                  type="text"
+                  className={cx("noti-input")}
+                  defaultValue={infor[0].fullname}
+                />
               </div>
               <div className={cx("noti-item")}>
                 <div className={cx("noti-name")}>Số điện thoại</div>
-                <input type="text" className={cx("noti-input")} />
+                <input
+                  type="text"
+                  className={cx("noti-input")}
+                  defaultValue={infor[0].phone}
+                />
               </div>
               <div className={cx("noti-item")}>
-                <div className={cx("noti-name")}>Địa chỉ email</div>
-                <input type="text" className={cx("noti-input")} />
+                <div className={cx("noti-name")}>Gmail</div>
+                <input
+                  type="text"
+                  className={cx("noti-input")}
+                  defaultValue={infor[0].email}
+                />
               </div>
-              <div className={cx("noti-item")}>
-                <div className={cx("noti-name")}>Mật khẩu hiện tại</div>
-                <input type="text" className={cx("noti-input")} />
+              <div className={cx("update-btn")}>
+                 <Button
+                className={cx("btn-see-detail")}
+              >
+                <p className={cx("text-produce-btn")}>Cập nhật thông tin</p>
+              </Button>
               </div>
-              <div className={cx("noti-item")}>
-                <div className={cx("noti-name")}>Mật khẩu mới</div>
-                <input type="password" className={cx("noti-input")} />
-              </div>
-              <div className={cx("noti-item")}>
-                <div className={cx("noti-name")}>Xác nhận mật khẩu</div>
-                <input type="password" className={cx("noti-input")} />
-              </div>
+             
             </div>
           </Col>
         </Row>

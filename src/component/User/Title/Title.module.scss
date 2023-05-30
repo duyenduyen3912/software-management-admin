@@ -1,0 +1,39 @@
+.wrapper {
+    padding: 19px 31px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.title{
+    font-size: 2rem;
+    color: var(--textColor);
+    font-weight: 600;
+}
+
+.sub-title{
+
+}
+
+.sub-title-icon{
+    width: 18px;
+    color: var(--iconColor);
+}
+
+.slash{
+    margin: 0 12px;
+    color: var(--textColor);
+}
+
+.sub-title-name{
+    font-size: 1.4rem;
+    color: var(--textColor);
+    font-weight: 500;
+}
+
+
+@media only screen and (max-width:575px) {
+    .sub-title{
+        display: none;
+    }
+}
