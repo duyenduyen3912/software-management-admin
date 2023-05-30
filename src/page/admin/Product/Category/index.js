@@ -122,11 +122,11 @@ function Category() {
 
                             <td className={cx("table-col")}>
                               <div className={cx("table-col-item")}>
-                                <Edit
+                                {/* <Edit
                                   id={item.id}
                                   action={"UpdateCategories"}
                                   name={item.name}
-                                />
+                                /> */}
 
                                 <Delete id={item.id} name={"categories"} />
                               </div>

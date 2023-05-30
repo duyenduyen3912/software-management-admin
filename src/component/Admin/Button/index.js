@@ -78,6 +78,7 @@ export const Add = (props) => {
           console.log(result);
         })
         .catch((error) => console.log("error", error));
+      navigate(`/product/list`);
     } else if (action === "Add") {
       var urlencoded = new URLSearchParams();
       urlencoded.append("name", data.name);
@@ -99,6 +100,7 @@ export const Add = (props) => {
           console.log(result);
         })
         .catch((error) => console.log("error", error));
+      navigate(`/product/list`);
     } else if (action === "AddCategories") {
       var urlencoded = new URLSearchParams();
       urlencoded.append("name", data.name);
@@ -113,6 +115,7 @@ export const Add = (props) => {
           console.log(result);
         })
         .catch((error) => console.log("error", error));
+      navigate(`product/category`);
     } else if (action === "UpdateCategories") {
       var urlencoded = new URLSearchParams();
       urlencoded.append("name", data.name);
@@ -127,6 +130,7 @@ export const Add = (props) => {
           console.log(result);
         })
         .catch((error) => console.log("error", error));
+      navigate(`product/category`);
     }
   };
   return (
@@ -266,9 +270,20 @@ export const View = (prop) => {
   );
 };
 
-export const Close = () => {
+export const Close = (prop) => {
+  const navigate = useNavigate();
+  const handleClose = (name) => {
+    if (name === "category") {
+      navigate(`/product/category`);
+    } else if (name === "product") {
+      navigate(`/product/list`);
+    }
+  };
   return (
-    <button className={cx("btn-view", "btn-wrap")}>
+    <button
+      className={cx("btn-view", "btn-wrap")}
+      onClick={() => handleClose(prop.name)}
+    >
       <span className={cx("btn-name")}>Đóng</span>{" "}
     </button>
   );

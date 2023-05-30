@@ -31,9 +31,8 @@ function New() {
     id: param.id,
   });
 
-  // if (param.id > 0) document.title = "Edit";
-  // else document.title = "Add";
-  // const [product, setProduct] = useState(product);
+  if (param.id > 0) document.title = "Edit";
+  else document.title = "Add";
 
   var myHeaders = new Headers();
   myHeaders.append("Authorization", localStorage.getItem("jwt"));
@@ -230,7 +229,7 @@ function New() {
                           <Add data={product} name={"Thêm"} action={"Add"} />
                         )}
 
-                        <Close />
+                        <Close name={"product"} />
                       </div>
                     </div>
                   </Col>

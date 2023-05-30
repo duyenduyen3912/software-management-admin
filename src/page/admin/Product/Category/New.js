@@ -134,7 +134,7 @@ function NewCategory() {
                         action={"AddCategories"}
                       />
                     )}
-                    <Close />
+                    <Close name={"category"} />
                   </div>
                 </div>
               </div>
