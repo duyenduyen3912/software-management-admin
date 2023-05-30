@@ -12,11 +12,19 @@ const cx = classNames.bind(styles);
 function List() {
   console.log(localStorage.getItem("jwt"));
   const navigate = useNavigate();
-  function shortenText(text, maxLength) {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength - 3) + "...";
-    } else {
-      return text;
+  function shortenText(jsonString, maxLength) {
+    try {
+      const parsedJson = JSON.parse(jsonString);
+      const jsonText = JSON.stringify(parsedJson);
+  
+      if (jsonText.length > maxLength) {
+        return jsonText.substring(0, maxLength - 3) + "...";
+      } else {
+        return jsonText;
+      }
+    } catch (error) {
+      console.log("Invalid JSON string:", error);
+      return jsonString;
     }
   }
   //fetch API
@@ -47,18 +55,27 @@ function List() {
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
   };
-  // console.log(jsonObj);
+  const [categories, setCategories] = useState([]);
+
+  //categories 
+  const fetchDataCategories =()=>{
+    fetch(`https://chippisoft.com/API/Categories.php`,requestOptions)
+    .then((response) => response.text())
+    .then((result) =>{
+      const jsonObj = JSON.parse(result);
+      console.log(jsonObj.data);
+      setCategories(jsonObj.data);
+      
+    })
+  }
+  useEffect(fetchDataCategories,[])
+//list product
   const fetchData = () => {
     fetch(
       `https://chippisoft.com/API/Getallproducts.php?page=${currentPage}`,
       requestOptions
     )
       .then((response) => response.text())
-      // .then((data) => {
-      //   //  console.log("day la data")
-      //   console.log(data);
-      //   JSON.parse(data);
-      // })
       .then((result) => {
         const jsonObj = JSON.parse(result);
         console.log(jsonObj.status);
@@ -76,76 +93,34 @@ function List() {
       <div id="container" className={cx("list", "desktop-reponsive")}>
         <div className={cx("list-block")}>
           <div className={cx("list-button")}>
-            <div className={cx("btn")}>
-              <Button
+          <div className={cx("btn")}> 
+                <Button
                 className={cx({
                   "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 1,
+                  "btn-buy-now": activeButton === 0,
                 })}
-                onClick={() => handleButtonClick(1)}
+                onClick={() => handleButtonClick(0)}
               >
                 <p className={cx("text-btn")}>Tất cả</p>
-              </Button>
-            </div>
-            <div className={cx("btn")}>
-              <Button
+              </Button></div>
+            {categories.map((category) => {
+              return(
+                <div className={cx("btn")}> 
+                <Button
                 className={cx({
                   "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 2,
+                  "btn-buy-now": activeButton === category.id,
                 })}
-                onClick={() => handleButtonClick(2)}
+                onClick={() => handleButtonClick(category.id)}
               >
-                <p className={cx("text-btn")}>Tool thiết kế</p>
-              </Button>
-            </div>
-            <div className={cx("btn")}>
-              <Button
-                className={cx({
-                  "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 3,
-                })}
-                onClick={() => handleButtonClick(3)}
-              >
-                <p className={cx("text-btn")}>Tool facebook</p>
-              </Button>
-            </div>
-            <div className={cx("btn")}>
-              <Button
-                className={cx({
-                  "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 4,
-                })}
-                onClick={() => handleButtonClick(4)}
-              >
-                <p className={cx("text-btn")}>Tool zalo</p>
-              </Button>
-            </div>
-            <div className={cx("btn")}>
-              <Button
-                className={cx({
-                  "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 5,
-                })}
-                onClick={() => handleButtonClick(5)}
-              >
-                <p className={cx("text-btn")}>Giải captcha</p>
-              </Button>
-            </div>
-            <div className={cx("btn")}>
-              <Button
-                className={cx({
-                  "btn-see-detail": true,
-                  "btn-buy-now": activeButton === 6,
-                })}
-                onClick={() => handleButtonClick(6)}
-              >
-                <p className={cx("text-btn")}>Tool twitter</p>
-              </Button>
-            </div>
+                <p className={cx("text-btn")}>{category.name}</p>
+              </Button></div>
+              )
+            })}
           </div>
-          {!products ? (
+          {/* {!products ? (
             <div>Vui lòng đăng nhập để xem sản phẩm.</div>
-          ) : (
+          ) : ( */}
             <Row xs={1} sm={2} xl={3} xxl={4} className={cx("list-produce")}>
               {products.map((product) => {
                 return (
@@ -209,7 +184,7 @@ function List() {
                 );
               })}
             </Row>
-          )}
+          {/* )} */}
         </div>
         <div className={cx("paging")}>
           <ReactPaginate

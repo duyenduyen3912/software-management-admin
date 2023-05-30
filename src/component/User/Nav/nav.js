@@ -3,22 +3,15 @@ import styles from "./Nav.module.scss";
 import {
   faDollarSign,
   faCodePullRequest,
-  faGauge,
-  faChevronDown,
-  faLock,
   faBarsStaggered,
   faClockRotateLeft,
-  faUsers,
-  faCreditCard,
-  faRug,
-  faBell,
-  faGear,
-  faBolt,
-  faX,
-  faChevronCircleLeft,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { faClipboard, faUser,faCircleUser } from "@fortawesome/free-regular-svg-icons";
+import {
+  faClipboard,
+  faUser,
+  faCircleUser,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -126,7 +119,7 @@ function Nav(props) {
         <li className="nav-item" id="pd-wrap">
           <div
             className={cx("item-wrap", "nav-item-down")}
-            //  onClick={()=> navigate("/list")}
+             onClick={()=> navigate("/list")}
           >
             <div className={cx("nav-item-left")}>
               <FontAwesomeIcon
@@ -138,22 +131,9 @@ function Nav(props) {
               </div>
             </div>
 
-            <div>
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                // className={cx("nav-icon", "icon-down")}
-                className={
-                  localStorage.getItem("product-btn-sub-menu")
-                    ? cx("nav-icon", "icon-down", "active-btn-down")
-                    : cx("nav-icon", "icon-down")
-                }
-                id="product-btn"
-                onClick={handleClickSubMenu}
-              />
-            </div>
           </div>
         </li>
-        <div
+        {/* <div
           className={cx("nav-item-sub")}
           id="product-btn-sub-menu"
           style={
@@ -199,7 +179,23 @@ function Nav(props) {
               </a>
             </div>
           </li>
-        </div>
+        </div> */}
+          <li
+          className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
+          id="mb-wrap"
+        >
+          <div className={cx("item-wrap")}>
+            <FontAwesomeIcon icon={ faClockRotateLeft} className={cx("nav-icon")} />
+            <a
+              href="/member"
+              className={cx("nav-item-name")}
+              id="mb"
+              onClick={(event) => handleClick(event, "order")}
+            >
+              Giao dịch gần đây
+            </a>
+          </div>
+        </li>
         <li
           className={`nav-item ${props.path === "pay" ? cx("active") : ""} `}
           id="mb-wrap"
@@ -276,15 +272,12 @@ function Nav(props) {
         {isAdmin === "1" && (
           <li id="p-wrap">
             <div className={cx("item-wrap")}>
-              <FontAwesomeIcon
-             icon={faCircleUser}
-                className={cx("nav-icon")}
-              />
+              <FontAwesomeIcon icon={faCircleUser} className={cx("nav-icon")} />
               <a
                 href="/pay"
                 className={cx("nav-item-name")}
                 id="p"
-                onClick={(event) => handleClick(event, "")}
+                onClick={(event) => handleClick(event, "dashboard")}
               >
                 ADMIN
               </a>

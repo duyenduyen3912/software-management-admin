@@ -122,7 +122,10 @@ Col {
   }
 
   .icon-notification{
-    margin-right: 8px;
+    //margin-right: 8px;
+    margin: 0 10px;
+    font-size: 25px;
+    color: var(--iconColor);
   }
   
 
@@ -215,6 +218,7 @@ Col {
   padding-left: 10px;
 }
 .dropdown {
+  cursor: pointer;
   position: relative;
   display: inline-block;
 }
