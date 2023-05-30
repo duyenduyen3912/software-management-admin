@@ -32,8 +32,6 @@ function List() {
 
   myHeaders.append("Authorization", localStorage.getItem("jwt"));
   var formdata = new FormData();
-  // formdata.append("username", "xuanninh1");
-  // formdata.append("password", "xuanninh1");
   var requestOptions = {
     method: "GET",
     headers: myHeaders,
@@ -65,7 +63,7 @@ function List() {
         const jsonObj = JSON.parse(result);
         console.log(jsonObj.status);
         setStatus(jsonObj.status);
-        // setTotalPage(result.total_pages);
+
         setTotalPage(jsonObj.total_pages);
         setShowProducts(jsonObj.data);
       })

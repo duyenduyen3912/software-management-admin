@@ -18,7 +18,7 @@ import {
   faChevronCircleLeft,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { faClipboard, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faClipboard, faUser,faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -277,7 +277,7 @@ function Nav(props) {
           <li id="p-wrap">
             <div className={cx("item-wrap")}>
               <FontAwesomeIcon
-                icon={faCodePullRequest}
+             icon={faCircleUser}
                 className={cx("nav-icon")}
               />
               <a
