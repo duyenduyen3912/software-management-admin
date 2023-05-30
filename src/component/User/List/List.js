@@ -134,7 +134,7 @@ function List() {
                         <div className={cx("infor")}>
                           <p className={cx("title")}>
                             {" "}
-                            {shortenText(JSON.stringify(product.name), 15)}
+                            {shortenText(((product.name)), 25)}
                           </p>
                           <div className={cx("price-bought-block")}>
                             <label className={cx("price")}>
@@ -149,7 +149,7 @@ function List() {
 
                           <p className={cx("des")}>
                             Mô tả:
-                            {shortenText(JSON.stringify(product.content), 30)}
+                            {shortenText(JSON.stringify(product.content), 25)}
                           </p>
                         </div>
                         <div className={cx("block-btn")}>
