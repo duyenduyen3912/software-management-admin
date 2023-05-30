@@ -260,13 +260,20 @@ export const Export = () => {
 };
 
 export const View = (prop) => {
+  const navigate = useNavigate();
+  const handleView = (id) => {
+    navigate(`/detail/${prop.id}`);
+  };
   return (
-    <a href={`https://chippisoft.com/detail/${prop.id}`}>
-      <button className={cx("btn-view", "btn-wrap")}>
-        <FontAwesomeIcon className={cx("btn-icon")} icon={faEye} />
-        <span className={cx("btn-name")}>Xem</span>{" "}
-      </button>
-    </a>
+    // <a href={`https://chippisoft.com/detail/${prop.id}`}>
+    <button
+      className={cx("btn-view", "btn-wrap")}
+      onClick={() => handleView(prop.id)}
+    >
+      <FontAwesomeIcon className={cx("btn-icon")} icon={faEye} />
+      <span className={cx("btn-name")}>Xem</span>{" "}
+    </button>
+    // </a>
   );
 };
 

@@ -44,7 +44,6 @@ function Sign_in() {
         .then((result) => {
           console.log(typeof result);
           const jsonObj = JSON.parse(result);
-
           localStorage.setItem("jwt", jsonObj.jwt);
           localStorage.setItem("isAdmin", jsonObj.isAdmin);
           if (jsonObj.status === "success") {

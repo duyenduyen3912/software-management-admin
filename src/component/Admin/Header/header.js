@@ -159,14 +159,16 @@ const Header = () => {
                 src={require("../../../assets/avatar.jpg")}
               />
               <div className={cx("admin")}>
-                <p className={cx("admin-name")}>DAM Xuan Ninh</p>
+                <p className={cx("admin-name")}>
+                  {localStorage.getItem("username")}
+                </p>
                 <div
                   className={cx("dropdown")}
                   onMouseDown={() => setShowDropdownMenu(true)}
                   onMouseLeave={() => setShowDropdownMenu(false)}
                 >
                   <p className={cx("sub-text")}>
-                    User{" "}
+                    Admin{" "}
                     <FontAwesomeIcon
                       className={cx("icon")}
                       icon={faChevronDown}

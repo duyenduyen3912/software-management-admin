@@ -35,6 +35,7 @@ import Account_page from "./page/user/Account/user_page";
 import List_page from "./page/user/listProduce/listProduce";
 import { Switch } from "react-router-dom";
 import ForgotPass from "./component/User/Sign/ForgotPass";
+import Redirect from "./page/user/Error/Redirect";
 
 // import Sign from "./page/admin/Sign/Sign";
 function App() {
@@ -62,134 +63,134 @@ function App() {
         <Route
           path={"/dashboard"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <Dashboard />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/activity"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <Activity />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/balance"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Balance /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Balance /> : <Redirect />
           }
         />
         <Route
           path={"/discount"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <Discount />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/discount/new"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <NewDiscount />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/member"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Member /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Member /> : <Redirect />
           }
         />
         <Route
           path={"/post"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Posts /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Posts /> : <Redirect />
           }
         />
         <Route
           path={"/newpost"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <NewPost /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <NewPost /> : <Redirect />
           }
         />
         <Route
           path={"/notification"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Noti /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Noti /> : <Redirect />
           }
         />
         <Route
           path={"/payment"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Pay /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Pay /> : <Redirect />
           }
         />
         <Route
           path={"/setting"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Setting /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Setting /> : <Redirect />
           }
         />
         <Route
           path={"/security"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <Security />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/product/list"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <Product /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <Product /> : <Redirect />
           }
         />
         <Route
           path={"/product/:id"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? <New /> : <Sign_client />
+            localStorage.getItem("isAdmin") === "1" ? <New /> : <Redirect />
           }
         />
         <Route
           path={"/product/category"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <Category />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/product/category/:id"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <NewCategory />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
         <Route
           path={"/product/order"}
           element={
-            localStorage.getItem("isAdmin") != 0 ? (
+            localStorage.getItem("isAdmin") === "1" ? (
               <OrderList />
             ) : (
-              <Sign_client />
+              <Redirect />
             )
           }
         />
