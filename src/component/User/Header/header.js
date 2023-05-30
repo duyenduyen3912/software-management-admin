@@ -175,7 +175,8 @@ const Header = () => {
                       <li
                         className={cx("hower-li")}
                         onClick={() => {
-                          localStorage.setItem("jwt", "");
+                          localStorage.removeItem("jwt");
+                          localStorage.removeItem("isAdmin");
                           navigate("/sign");
                         }}
                       >
@@ -186,9 +187,9 @@ const Header = () => {
                         >
                           {" "}
                           {localStorage.getItem("jwt") === "" ? (
-                            <p>đăng nhập</p>
+                            <p>Đăng nhập</p>
                           ) : (
-                            <>đăng xuất</>
+                            <>Đăng xuất</>
                           )}
                           {/* Đăng xuất */}{" "}
                         </label>

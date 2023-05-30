@@ -23,6 +23,9 @@ import Button, {
 } from "../../../component/Admin/Button";
 import Header from "../../../component/Admin/Header/header";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { api } from "../../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +33,27 @@ function Member() {
   const location = useLocation();
   const name = location.pathname;
   let router = name.substring(1);
+
+  const [member, setMember] = useState([]);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+  myHeaders.append("Host", "chippisoft.com");
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  useEffect(() => {
+    fetch(api.MemberList, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        setMember(JSON.parse(result).id);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
+
   return (
     <>
       <div className={cx("wrapper")}>
@@ -76,103 +100,116 @@ function Member() {
                           <div className={cx("table-col-item")}> Admin</div>
                         </th>
                         <th className={cx("table-col-heading")}>
-                          <div className={cx("table-col-item")}> CTV</div>
-                        </th>
-                        <th className={cx("table-col-heading")}>
                           <div className={cx("table-col-item")}> Thao tác</div>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className={cx("table-line-item")}>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> 1</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <ul className={cx("table-col-item")}>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Tên đăng nhập:
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Địa chỉ email:
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Số điện thoại:
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Tình trạng:{" "}
-                              <span className={cx("table-col-active")}>
-                                Active
-                              </span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <ul className={cx("table-col-item")}>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Số dư khả dụng:{" "}
-                              <span className={cx("table-col-li-blue")}>
-                                0đ
-                              </span>
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Tổng số tiền nạp:{" "}
-                              <span className={cx("table-col-li-gr")}>0đ</span>
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              {" "}
-                              Chiết khấu / giảm giá:{" "}
-                              <span className={cx("table-col-li-red")}>0đ</span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <ul className={cx("table-col-item")}>
-                            <li className={cx("table-col-li")}>
-                              IP:
-                              <li className={cx("table-col-li")}>
-                                Status:{" "}
-                                <span className={cx("table-col-active")}>
-                                  Active
+                      {member.map((item, index) => {
+                        return (
+                          <tr className={cx("table-line-item")} key={index}>
+                            <td className={cx("table-col")}>
+                              <div className={cx("table-col-item")}>
+                                {" "}
+                                {++index}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <ul className={cx("table-col-item")}>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Tên đăng nhập: {item.username}
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Mật khẩu: {item.password}
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Địa chỉ email: {item.email}
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Số điện thoại: {item.phone}
+                                </li>
+                              </ul>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <ul className={cx("table-col-item")}>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Số dư khả dụng:
+                                  <span className={cx("table-col-li-blue")}>
+                                    {item.money}
+                                  </span>
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Tổng số tiền nạp:{" "}
+                                  <span className={cx("table-col-li-gr")}>
+                                    {item.total_money}
+                                  </span>
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Chiết khấu / giảm giá:{" "}
+                                  <span className={cx("table-col-li-red")}>
+                                    {item.chietkhau}
+                                  </span>
+                                </li>
+                              </ul>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <ul className={cx("table-col-item")}>
+                                <li className={cx("table-col-li")}>
+                                  IP: {item.ip}
+                                </li>
+                                <li className={cx("table-col-li")}>
+                                  {" "}
+                                  Tình trạng:{" "}
+                                  {item.active != 1 ? (
+                                    <span className={cx("table-col-active")}>
+                                      No Active
+                                    </span>
+                                  ) : (
+                                    <span className={cx("table-col-active")}>
+                                      Active
+                                    </span>
+                                  )}
+                                </li>
+
+                                <li className={cx("table-col-li")}>
+                                  Ngày tham gia:
+                                  <span className={cx("table-col-li")}>
+                                    {item.create_date}
+                                  </span>
+                                </li>
+                              </ul>
+                            </td>
+                            <td className={cx("table-col")}>
+                              {item.admin != 1 ? (
+                                <span className={cx("table-col-red")}>
+                                  Không
                                 </span>
-                              </li>
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              Ngày tham gia:
-                              <span className={cx("table-col-li")}>0đ</span>
-                            </li>
-                            <li className={cx("table-col-li")}>
-                              Hoạt động gần đây:
-                              <span className={cx("table-col-li")}>0đ</span>
-                            </li>
-                          </ul>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <span className={cx("table-col-active")}>Có</span>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <span
-                            className={cx("table-col-ctv", "table-col-active")}
-                          >
-                            Không
-                          </span>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <ul className={cx("table-col-item")}>
-                            <Delete />
-                            <br />
-                            <Edit />
-                            <br />
-                            <Logout />
-                          </ul>
-                        </td>
-                      </tr>
+                              ) : (
+                                <span className={cx("table-col-active")}>
+                                  Có
+                                </span>
+                              )}
+                            </td>
+
+                            <td className={cx("table-col")}>
+                              <ul className={cx("table-col-item")}>
+                                <Delete id={item.id} name={"member"} />
+                                <br />
+                                <Edit />
+                                <br />
+                                <Logout />
+                              </ul>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 </div>

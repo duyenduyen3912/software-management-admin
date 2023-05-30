@@ -168,7 +168,7 @@ function Product() {
 
                           <td className={cx("table-col")}>
                             <div className={cx("table-col-item")}>
-                              <View />
+                              <View id={item.id} />
                               <br />
                               <Edit id={item.id} action={"product"} />
                               <br />

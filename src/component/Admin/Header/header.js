@@ -188,7 +188,11 @@ const Header = () => {
                       </li>
                       <li
                         className={cx("hower-li")}
-                        onClick={() => navigate("/sign")}
+                        onClick={() => {
+                          localStorage.removeItem("jwt");
+                          localStorage.removeItem("isAdmin");
+                          navigate("/sign");
+                        }}
                       >
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                         <label className={cx("menu-text")}> Đăng xuất </label>

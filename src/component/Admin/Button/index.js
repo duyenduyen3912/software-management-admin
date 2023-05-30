@@ -56,6 +56,7 @@ export const Add = (props) => {
     if (action === "Redirect") {
       navigate(`/${data}`);
     } else if (action === "Update") {
+      console.log(data);
       var urlencoded = new URLSearchParams();
       urlencoded.append("name", data.name);
       urlencoded.append("stt", "1");
@@ -87,7 +88,7 @@ export const Add = (props) => {
       urlencoded.append("version", data.version);
       urlencoded.append("discount", data.discount);
       urlencoded.append("content", data.content);
-
+      urlencoded.append("hash", "null");
       // urlencoded.append("image", data.image);
       fetch(`${api.AddProduct}`, {
         ...requestOptions,
@@ -169,8 +170,12 @@ export const Delete = (prop) => {
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
     } else if (prop.name === "categories") {
-      console.log(prop.id);
       fetch(api.DeleteCategories, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    } else if (prop.name === "member") {
+      fetch(api.DeleteMember, requestOptions)
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log("error", error));
@@ -199,7 +204,7 @@ export const Delete = (prop) => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className={cx("modal-body")}>
-            Bạn có muốn xoá sản phẩm này không ?
+            Bạn có chắc chắn muốn xoá không ?
           </Modal.Body>
           <Modal.Footer className={cx("modal-btn")}>
             <button
@@ -250,12 +255,14 @@ export const Export = () => {
   );
 };
 
-export const View = () => {
+export const View = (prop) => {
   return (
-    <button className={cx("btn-view", "btn-wrap")}>
-      <FontAwesomeIcon className={cx("btn-icon")} icon={faEye} />
-      <span className={cx("btn-name")}>Xem</span>{" "}
-    </button>
+    <a href={`https://chippisoft.com/detail/${prop.id}`}>
+      <button className={cx("btn-view", "btn-wrap")}>
+        <FontAwesomeIcon className={cx("btn-icon")} icon={faEye} />
+        <span className={cx("btn-name")}>Xem</span>{" "}
+      </button>
+    </a>
   );
 };
 

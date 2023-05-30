@@ -10,6 +10,8 @@ import { Col, Row, Table } from "react-bootstrap";
 import Header from "../../../component/Admin/Header/header";
 import Nav from "../../../component/Admin/Nav";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../../constants";
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +19,27 @@ function Balance() {
   const location = useLocation();
   const name = location.pathname;
   let router = name.substring(1);
+
+  const [balance, setBalance] = useState([]);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", localStorage.getItem("jwt"));
+  myHeaders.append("Host", "chippisoft.com");
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  useEffect(() => {
+    fetch(api.ChangeBalance, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        setBalance(JSON.parse(result).id);
+      })
+      .catch((error) => console.log("error", error));
+  }, []);
+
   return (
     <>
       <div className={cx("wrapper")}>
@@ -70,120 +93,60 @@ function Balance() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className={cx("table-line-item")}>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> 1</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> admin</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-1")}>
-                            {" "}
-                            10.000.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-2")}>
-                            {" "}
-                            50.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-3")}>
-                            {" "}
-                            10.050.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            2022-10-05 09:58:33
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            Hoá đơn nạp tiền #P9Q7V
-                          </div>
-                        </td>
-                      </tr>
-                      <tr className={cx("table-line-item")}>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> 1</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> admin</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-1")}>
-                            {" "}
-                            10.000.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-2")}>
-                            {" "}
-                            50.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-3")}>
-                            {" "}
-                            10.050.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            2022-10-05 09:58:33
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            Hoá đơn nạp tiền #P9Q7V
-                          </div>
-                        </td>
-                      </tr>
-                      <tr className={cx("table-line-item")}>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> 1</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}> admin</div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-1")}>
-                            {" "}
-                            10.000.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-2")}>
-                            {" "}
-                            50.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item", "table-col-3")}>
-                            {" "}
-                            10.050.000
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            2022-10-05 09:58:33
-                          </div>
-                        </td>
-                        <td className={cx("table-col")}>
-                          <div className={cx("table-col-item")}>
-                            {" "}
-                            Hoá đơn nạp tiền #P9Q7V
-                          </div>
-                        </td>
-                      </tr>
+                      {balance.map((item, index) => {
+                        return (
+                          <tr className={cx("table-line-item")} key={index}>
+                            <td className={cx("table-col")}>
+                              <div className={cx("table-col-item")}>
+                                {" "}
+                                {++index}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div className={cx("table-col-item")}>
+                                {" "}
+                                {item.user_id}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div
+                                className={cx("table-col-item", "table-col-1")}
+                              >
+                                {" "}
+                                {item.before_money}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div
+                                className={cx("table-col-item", "table-col-2")}
+                              >
+                                {" "}
+                                {item.change_money}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div
+                                className={cx("table-col-item", "table-col-3")}
+                              >
+                                {" "}
+                                {item.after_money}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div className={cx("table-col-item")}>
+                                {" "}
+                                {item.time}
+                              </div>
+                            </td>
+                            <td className={cx("table-col")}>
+                              <div className={cx("table-col-item")}>
+                                {" "}
+                                {item.description}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </Table>
                 </div>

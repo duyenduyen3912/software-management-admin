@@ -48,14 +48,14 @@ function Sign_in() {
           localStorage.setItem("jwt", jsonObj.jwt);
           console.log(localStorage.getItem("jwt"));
           if (jsonObj.status === "success") {
-            alert("Đăng nhập thành công");
+            alert("đăng nhập thành công");
             dispatch(setJWT(`${jsonObj.jwt}`));
             localStorage.setItem("isAdmin", jsonObj.isAdmin);
             navigate("/");
           }
           if (jsonObj.status === "failed") {
             alert("đăng nhập thất bại");
-            navigate("/");
+            // navigate("/");
           }
           //else alert("đăng nhập thất bại");
         })

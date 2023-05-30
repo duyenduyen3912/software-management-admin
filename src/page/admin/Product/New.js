@@ -18,19 +18,17 @@ const cx = classNames.bind(styles);
 function New() {
   const [avt, setAvt] = useState();
   const param = useParams();
-  const [product, setProduct] = useState([
-    {
-      name: "",
-      price: "",
-      content: "",
-      category_id: "",
-      status: "1",
-      stt: "1",
-      discount: "",
-      version: "",
-      id: param.id,
-    },
-  ]);
+  const [product, setProduct] = useState({
+    name: "",
+    price: "",
+    content: "",
+    category_id: "",
+    status: "1",
+    stt: "1",
+    discount: "",
+    version: "",
+    id: param.id,
+  });
   // const [product, setProduct] = useState(product);
 
   var myHeaders = new Headers();
@@ -48,7 +46,7 @@ function New() {
       .then((response) => response.text())
       .then((result) => {
         const data = JSON.parse(result);
-        setProduct(data.data);
+        setProduct(data.data[0]);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -120,7 +118,7 @@ function New() {
                           <input
                             type="text"
                             className={cx("post-input")}
-                            defaultValue={product[0].name}
+                            defaultValue={product.name}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -135,7 +133,7 @@ function New() {
                           <input
                             type="text"
                             className={cx("post-input")}
-                            defaultValue={product[0].category_id}
+                            defaultValue={product.category_id}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -149,7 +147,7 @@ function New() {
                           <input
                             type="text"
                             className={cx("post-input")}
-                            defaultValue={product[0].version}
+                            defaultValue={product.version}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -163,7 +161,7 @@ function New() {
                           <input
                             type="number"
                             className={cx("post-input")}
-                            defaultValue={product[0].discount}
+                            defaultValue={product.discount}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -177,7 +175,7 @@ function New() {
                           <input
                             type="number"
                             className={cx("post-input")}
-                            defaultValue={product[0].price}
+                            defaultValue={product.price}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -190,7 +188,7 @@ function New() {
                           <div className={cx("post-title")}>Trạng thái</div>
                           <select
                             className={cx("post-select", "post-input")}
-                            defaultValue={product[0].status}
+                            defaultValue={product.status}
                             onChange={(e) => {
                               setProduct({
                                 ...product,
@@ -211,7 +209,7 @@ function New() {
                           <textarea
                             type="text"
                             className={cx("post-input")}
-                            defaultValue={product[0].content}
+                            defaultValue={product.content}
                             onChange={(e) => {
                               setProduct({
                                 ...product,

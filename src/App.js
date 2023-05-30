@@ -49,7 +49,7 @@ function App() {
         <Route path="/post" element={<Post_page_detail />} />
         <Route path="/pay" element={<Pay_page />} />
         <Route path="/contact" element={<Contact_page />} />
-        <Route path="/sign" element={<Sign_client />} />
+
         <Route path="/order" element={<OderHistory_page />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/forgotNext" element={<ForgotPassNext />} />
@@ -58,24 +58,103 @@ function App() {
         <Route path="*" element={<Error_not_found />} />
         <Route path={"/chippisoft"} element={<Intro />} />
         <Route path={"/sign"} element={<Sign_client />} />
-        <Route path={"/"} element={<Dashboard />} />
-        <Route path={"/dashboard"} element={<Dashboard />} />
-        <Route path={"/activity"} element={<Activity />} />
-        <Route path={"/balance"} element={<Balance />} />
-        <Route path={"/discount"} element={<Discount />} />
-        <Route path={"/discount/new"} element={<NewDiscount />} />
-        <Route path={"/member"} element={<Member />} />
-        <Route path={"/post"} element={<Posts />} />
-        <Route path={"/newpost"} element={<NewPost />} />
-        <Route path={"/notification"} element={<Noti />} />
-        <Route path={"/payment"} element={<Pay />} />
-        <Route path={"/setting"} element={<Setting />} />
-        <Route path={"/security"} element={<Security />} />
-        <Route path={"/product/list"} element={<Product />} />
-        <Route path={"/product/:id"} element={<New />} />
-        <Route path={"/product/category"} element={<Category />} />
-        <Route path={"/product/category/:id"} element={<NewCategory />} />
-        <Route path={"/product/order"} element={<OrderList />} />
+
+        <Route
+          path={"/dashboard"}
+          element={
+            localStorage.getItem("isAdmin") ? <Dashboard /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/activity"}
+          element={
+            localStorage.getItem("isAdmin") ? <Activity /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/balance"}
+          element={
+            localStorage.getItem("isAdmin") ? <Balance /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/discount"}
+          element={
+            localStorage.getItem("isAdmin") ? <Discount /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/discount/new"}
+          element={
+            localStorage.getItem("isAdmin") ? <NewDiscount /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/member"}
+          element={
+            localStorage.getItem("isAdmin") ? <Member /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/post"}
+          element={
+            localStorage.getItem("isAdmin") ? <Posts /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/newpost"}
+          element={
+            localStorage.getItem("isAdmin") ? <NewPost /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/notification"}
+          element={localStorage.getItem("isAdmin") ? <Noti /> : <Sign_client />}
+        />
+        <Route
+          path={"/payment"}
+          element={localStorage.getItem("isAdmin") ? <Pay /> : <Sign_client />}
+        />
+        <Route
+          path={"/setting"}
+          element={
+            localStorage.getItem("isAdmin") ? <Setting /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/security"}
+          element={
+            localStorage.getItem("isAdmin") ? <Security /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/product/list"}
+          element={
+            localStorage.getItem("isAdmin") ? <Product /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/product/:id"}
+          element={localStorage.getItem("isAdmin") ? <New /> : <Sign_client />}
+        />
+        <Route
+          path={"/product/category"}
+          element={
+            localStorage.getItem("isAdmin") ? <Category /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/product/category/:id"}
+          element={
+            localStorage.getItem("isAdmin") ? <NewCategory /> : <Sign_client />
+          }
+        />
+        <Route
+          path={"/product/order"}
+          element={
+            localStorage.getItem("isAdmin") ? <OrderList /> : <Sign_client />
+          }
+        />
       </Routes>
     </div>
   );

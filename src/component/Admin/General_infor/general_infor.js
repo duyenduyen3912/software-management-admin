@@ -39,6 +39,14 @@ function General() {
         setTotalIncome(jsonObj.id.soluong);
       })
       .catch((error) => console.log("error", error));
+
+    fetch(api.SoftwareSold, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        const jsonObj = JSON.parse(result);
+        setSoftwareSold(jsonObj.id.soluong);
+      })
+      .catch((error) => console.log("error", error));
   }, []);
 
   return (
@@ -80,7 +88,7 @@ function General() {
           {" "}
           <div className={cx("text")}>
             <p className={cx("title")}>Tài khoản đã bán </p>
-            <p className={cx("quantity")}>35</p>
+            <p className={cx("quantity")}>{softwareSold}</p>
           </div>
           <div className={cx("block-icon")}>
             {" "}

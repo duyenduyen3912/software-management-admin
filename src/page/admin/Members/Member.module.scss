@@ -69,3 +69,18 @@
     background-color: var(--success);
     border-radius: 2px;
 }
+
+.table-col-red{
+    padding: 6px 14px;
+    color: #fff;
+    font-size: 1rem;
+    background-color: var(--danger);
+    border-radius: 2px;
+}
+
+.table-col{
+    text-align: center;
+    min-width: 140px;
+       
+    max-width: 30%;
+}

@@ -11,4 +11,8 @@ export default {
   AddCategory: "https://chippisoft.com/API/Addcategories.php",
   AddProduct: "https://chippisoft.com/API/Addnewproduct.php",
   UpdateProduct: "https://chippisoft.com/API/Updateproduct.php",
+  SoftwareSold: "https://chippisoft.com/API/Countlicense.php",
+  ChangeBalance: "https://chippisoft.com/API/Changebalance.php",
+  MemberList: "https://chippisoft.com/API/Getallusers.php",
+  DeleteMember: "https://chippisoft.com/API/Deleteuser.php",
 };
