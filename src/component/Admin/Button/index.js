@@ -115,7 +115,7 @@ export const Add = (props) => {
           console.log(result);
         })
         .catch((error) => console.log("error", error));
-      navigate(`product/category`);
+      navigate(`/product/category`);
     } else if (action === "UpdateCategories") {
       var urlencoded = new URLSearchParams();
       urlencoded.append("name", data.name);

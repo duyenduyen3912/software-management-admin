@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/list" element={<List_page />} />
         <Route path="/list/id" element={<Detail_page />} />
         <Route path="/detail/:id" element={<Detail_page />} />
@@ -54,146 +54,29 @@ function App() {
         <Route path="/order" element={<OderHistory_page />} />
         <Route path="/forgot" element={<ForgotPass />} />
         <Route path="/forgotNext" element={<ForgotPassNext />} />
-        <Route path="/intro" element={<Intro />} />
+        {/* <Route path="/intro" element={<Intro />} /> */}
         <Route path="/accountUser" element={<Account_page />} />
         <Route path="*" element={<Error_not_found />} />
-        <Route path={"/chippisoft"} element={<Intro />} />
+        <Route path={"/"} element={<Intro />} />
         <Route path={"/sign"} element={<Sign_client />} />
 
-        <Route
-          path={"/dashboard"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <Dashboard />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/activity"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <Activity />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/balance"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Balance /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/discount"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <Discount />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/discount/new"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <NewDiscount />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/member"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Member /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/post"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Posts /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/newpost"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <NewPost /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/notification"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Noti /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/payment"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Pay /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/setting"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Setting /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/security"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <Security />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/product/list"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <Product /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/product/:id"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? <New /> : <Redirect />
-          }
-        />
-        <Route
-          path={"/product/category"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <Category />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/product/category/:id"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <NewCategory />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
-        <Route
-          path={"/product/order"}
-          element={
-            localStorage.getItem("isAdmin") === "1" ? (
-              <OrderList />
-            ) : (
-              <Redirect />
-            )
-          }
-        />
+        <Route path={"/dashboard"} element={<Dashboard />} />
+        <Route path={"/activity"} element={<Activity />} />
+        <Route path={"/balance"} element={<Balance />} />
+        <Route path={"/discount"} element={<Discount />} />
+        <Route path={"/discount/new"} element={<NewDiscount />} />
+        <Route path={"/member"} element={<Member />} />
+        <Route path={"/feed"} element={<Posts />} />
+        <Route path={"/newpost"} element={<NewPost />} />
+        <Route path={"/notification"} element={<Noti />} />
+        <Route path={"/payment"} element={<Pay />} />
+        <Route path={"/setting"} element={<Setting />} />
+        <Route path={"/security"} element={<Security />} />
+        <Route path={"/product/list"} element={<Product />} />
+        <Route path={"/product/:id"} element={<New />} />
+        <Route path={"/product/category"} element={<Category />} />
+        <Route path={"/product/category/:id"} element={<NewCategory />} />
+        <Route path={"/product/order"} element={<OrderList />} />
       </Routes>
     </div>
   );

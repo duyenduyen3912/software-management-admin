@@ -193,6 +193,7 @@ const Header = () => {
                         onClick={() => {
                           localStorage.removeItem("jwt");
                           localStorage.removeItem("isAdmin");
+                          localStorage.removeItem("username");
                           navigate("/sign");
                         }}
                       >

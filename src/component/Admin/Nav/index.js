@@ -360,17 +360,17 @@ function Nav(props) {
           </div>
         </li>
         <li
-          className={`nav-item ${props.path === "post" ? cx("active") : ""} `}
-          id="post-wrap"
+          className={`nav-item ${props.path === "feed" ? cx("active") : ""} `}
+          id="feed-wrap"
         >
           <div className={cx("item-wrap")}>
             {" "}
             <FontAwesomeIcon icon={faClipboard} className={cx("nav-icon")} />
             <a
-              href="/post"
+              href="/feed"
               className={cx("nav-item-name")}
-              id="post"
-              onClick={(event) => handleClick(event, "post")}
+              id="feed"
+              onClick={(event) => handleClick(event, "feed")}
             >
               Bài viết
             </a>

@@ -48,11 +48,8 @@ function Sign_in() {
           localStorage.setItem("isAdmin", jsonObj.isAdmin);
           if (jsonObj.status === "success") {
             alert("đăng nhập thành công");
-            if (jsonObj.isAdmin === "1") {
-              navigate("/dashboard");
-            } else {
-              navigate("/");
-            }
+
+            navigate("/home");
           }
           if (jsonObj.status === "failed") {
             alert("đăng nhập thất bại");
@@ -75,7 +72,7 @@ function Sign_in() {
             id="username"
             name="username"
             onChange={(e) => setUser({ ...user, username: e.target.value })}
-            placeholder="tài khoản"
+            placeholder="Tài khoản"
           />
         </div>
         <div className={cx("user-password")}>
@@ -83,7 +80,7 @@ function Sign_in() {
           <input
             className={cx("input")}
             type="password"
-            placeholder="mật khẩu"
+            placeholder="Mật khẩu"
             id="password"
             name="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -91,7 +88,7 @@ function Sign_in() {
         </div>
         <div className={cx("check-box ")}>
           <input className={cx("input-check-box")} type="checkbox" />
-          <label className={cx("label-check-book")}>ghi nhớ mật khẩu</label>
+          <label className={cx("label-check-book")}>Ghi nhớ mật khẩu</label>
         </div>
       </div>
 
@@ -109,7 +106,7 @@ function Sign_in() {
         </div>
       )} */}
         </div>
-        <div className={cx("btn-block-log-in")}>
+        <div className={cx("btn-block-log-in")} style={{ marginTop: 20 }}>
           <Button className={cx("tool-btn ")} onClick={handleSubmit}>
             <p className={cx("btn-text")}>ĐĂNG NHẬP</p>
           </Button>

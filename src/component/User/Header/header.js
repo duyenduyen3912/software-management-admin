@@ -9,9 +9,7 @@ import {
   faArrowRightFromBracket,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faBell
-}from "@fortawesome/free-regular-svg-icons";
+import { faBell } from "@fortawesome/free-regular-svg-icons";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -89,7 +87,6 @@ const Header = () => {
             className={cx("icon-nav")}
             onClick={_handleClick}
           />
-       
         </Col>
         <Col sm={10} xs={9} style={{ padding: "0px" }}>
           <div className={cx("header-icon")}>
@@ -147,7 +144,9 @@ const Header = () => {
                 src={require("../../../assets/avatar.jpg")}
               />
               <div className={cx("admin")}>
-                <p className={cx("admin-name")}>{localStorage.getItem("username")}</p>
+                <p className={cx("admin-name")}>
+                  {localStorage.getItem("username")}
+                </p>
                 <div
                   className={cx("dropdown")}
                   onMouseDown={() => setShowDropdownMenu(true)}
@@ -187,10 +186,25 @@ const Header = () => {
                           // onClick={handleLogIn}
                         >
                           {" "}
-                          {localStorage.getItem("jwt") === "" ? (
-                            <p>đăng nhập</p>
+                          {localStorage.getItem("username") ? (
+                            <p
+                              onClick={() => {
+                                localStorage.removeItem("jwt");
+                                localStorage.removeItem("isAdmin");
+                                localStorage.removeItem("username");
+                                navigate("/sign");
+                              }}
+                            >
+                              Đăng xuất
+                            </p>
                           ) : (
-                            <>đăng xuất</>
+                            <p
+                              onClick={() => {
+                                navigate("/sign");
+                              }}
+                            >
+                              Đăng nhập
+                            </p>
                           )}
                           {/* Đăng xuất */}{" "}
                         </label>

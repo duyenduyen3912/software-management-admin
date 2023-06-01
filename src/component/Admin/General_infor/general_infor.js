@@ -87,7 +87,7 @@ function General() {
         <div className={cx("block-wrap")}>
           {" "}
           <div className={cx("text")}>
-            <p className={cx("title")}>Tài khoản đã bán </p>
+            <p className={cx("title")}>Phần mềm đã bán </p>
             <p className={cx("quantity")}>{softwareSold}</p>
           </div>
           <div className={cx("block-icon")}>

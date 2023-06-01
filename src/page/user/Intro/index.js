@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const cx = classNames.bind(styles);
 
 function Intro() {
+  const naviagte = useNavigate();
   document.title = "Chippisoft";
   const _handleClickSubmenu = (event) => {
     let element = event.target.id;
@@ -58,7 +60,14 @@ function Intro() {
               src={require("../../../assets/logo.png")}
               className={cx("user-img")}
             />
-            <span className={cx("user-name")}> Username </span>
+            <span className={cx("user-name")}>
+              {" "}
+              {localStorage.getItem("username") ? (
+                <span onClick={() => naviagte(`/home`)}>Home</span>
+              ) : (
+                <span onClick={() => naviagte(`/sign`)}>Login</span>
+              )}{" "}
+            </span>
           </div>
           <div className={cx("header-icon-wrap")}>
             <FontAwesomeIcon

@@ -27,7 +27,13 @@ function Sign_client() {
   };
 
   const [activeButton, setActiveButton] = useState(1);
-  localStorage.setItem("jwt", "");
+  useEffect(() => {
+    if (localStorage.getItem("username")) {
+      console.log(localStorage.getItem("username"));
+      navigate(`/home`);
+    }
+  }, []);
+
   return (
     <div className={cx("sign")}>
       <div className={cx("sign-block")}>
@@ -63,7 +69,10 @@ function Sign_client() {
                   ĐĂNG KÝ
                 </div>
               </div>
-              <p className={cx("free-log-in")} onClick={() => navigate("/")}>
+              <p
+                className={cx("free-log-in")}
+                onClick={() => navigate("/home")}
+              >
                 Tiếp tục mà không cần tài khoản
               </p>
               {showLogIn && <Sign_in />}
